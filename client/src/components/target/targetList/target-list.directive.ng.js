@@ -32,26 +32,24 @@ function TargetList($scope, $timeout, metricService, $reactive) {
         var total = getTotal(progress);
         var rest = goal - total;
 
-        var onMinute = 60 * 1000; // hours*minutes*seconds*milliseconds
+        var onMinute = 60 * 1000; // seconds*milliseconds
         var firstDate = new Date()
         var secondDate = new Date(goalDate);
-
         var diffMinutes = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (onMinute))) + 1440;
-
         return Math.round(rest / (diffMinutes / frequency));
     }
 
     self.trackTarget = function (value, index) {
         self.targets[index].progress.push({
             date: new Date(),
-            value: value
+            value: Number(value)
         });
         self.track = false;
     }
 
     self.countTotalProgress = function (progress, goal) {
         var total = getTotal(progress);
-        return Math.round((total / goal) * 100) / 100;
+        return Math.round((total / goal) * 100);
     }
     self.getMetric = function (mins) {
         return metricService.getMetric(mins);
