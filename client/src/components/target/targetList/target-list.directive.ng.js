@@ -15,10 +15,13 @@ function targetListDirective() {
     };
 }
 
-TargetList.$inject = ["$scope", "$timeout", "metricService"];
+TargetList.$inject = ["$scope", "$timeout", "metricService", "$reactive"];
 
-function TargetList($scope, $timeout, metricService) {
+function TargetList($scope, $timeout, metricService, $reactive) {
     var self = this;
+    self.track = false;
+    self.currentValue = '';
+    console.log($reactive);
     $timeout(function () {
         console.log($scope.targets)
         console.log(self);
@@ -38,6 +41,13 @@ function TargetList($scope, $timeout, metricService) {
         return Math.round(rest / (diffMinutes / frequency));
     }
 
+    self.trackTarget = function (value, index) {
+        self.targets[index].progress.push({
+            date: new Date(),
+            value: value
+        });
+        self.track = false;
+    }
 
     self.countTotalProgress = function (progress, goal) {
         var total = getTotal(progress);

@@ -14,9 +14,14 @@
         </li>
         <li ng-repeat="item in vm.targets track by $index">
             <div class="view">
-                <input class="toggle" type="checkbox">
+                <input ng-hide="vm.track === $index" ng-click="vm.track = $index; vm.currentValue =''" class="toggle" type="checkbox">
+                <div ng-show="vm.track === $index">
+                    <input type="text" class="toggle" placeholder="hello" ng-model="vm.currentValue">
+                    <div ng-click="vm.trackTarget(vm.currentValue, $index)" class="success">ok</div>
+                </div>
                 <label class="task-name" ng-bind="item.name">
                 </label>
+
                 <label class="task-options">
                     {{item.goalValue}} | {{item.metric}} | {{vm.countTotalProgress(item.progress,item.goalValue) + '%'}} | {{vm.countToday(item.progress,
                     item.frequency,item.goalDate, item.goalValue)}} {{ 'per '+ vm.getMetric(item.frequency)}} | {{item.goalDate
