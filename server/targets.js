@@ -1,3 +1,3 @@
 Meteor.publish("targets", function () {
-    return Targets.find({ owner : this.userId }).targets;
+    return Targets.find({ owner : 1 }).targets;
 });
