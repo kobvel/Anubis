@@ -1,6 +1,6 @@
 Meteor.startup(function () {
     if (Targets.find().count() === 0) {
-        var targets = [
+        var targetList = [
             {
                 'name' : 'Read JS books',
                 'goalValue' : 1000,
@@ -29,19 +29,19 @@ Meteor.startup(function () {
             {
                 'name' : 'Drink more',
                 'goalValue' : 100,
-                'metric' : 'leitres',
+                'metric' : 'litres',
                 'metricShort' : 'l',
                 'startDate' : new Date(),
                 'goalDate' : new Date('2016-04-01'),
                 'frequency' : 60,
                 'progress' : [
                 	{'date' : new Date('2016-02-20T03:10:21Z'), 'value' : 0.5},
-                	{'date' : new Date('2016-02-20T03:40:13Z'), 'value' : 0.5}
+                	{'date' : new Date('2016-02-20T03:40:13Z'), 'value' : 0.33}
                 ],
                 'status' : 'done'
             }
         ];
-        for (var i = 0; i < targets.length; i++)
-            Targets.insert({name: targets[i].name, description: targets[i].description});
+
+        Targets.insert(owner: 1, targets: targetList);
     }
 });
