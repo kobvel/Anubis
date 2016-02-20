@@ -1,10 +1,47 @@
 <div>
     <header class="header">
-        <input class="new-todo" placeholder="Your next task" autofocus>
+        <div class="new-todo-field">
+            <input class="new-todo" placeholder="Your next task" autofocus
+               ng-focus="showTaskCreateOption = true">
+        </div>
+        <div class="row"
+           ng-show="showTaskCreateOption">
+            <div class="col-md-4 goalValue-field">
+                <div class="input-block"
+                   ng-show="goalValueEditMode">
+                    <input type="text" placeholder="goal value" autofocus>
+                </div>
+                <label
+                   ng-click="goalValueEditMode = true"
+                   ng-show="!goalValueEditMode">
+                    goal value
+                </label>
+            </div>
+            <div class="col-md-4 metric-field">
+                <div class="input-block"
+                   ng-show="metricEditMode">
+                    <input type="text" placeholder="metric" autofocus>
+                </div>
+                <label
+                   ng-click="metricEditMode = true"
+                   ng-show="!metricEditMode">
+                    metric
+                </label>
+            </div>
+            <div class="col-md-4 due-date-field">
+                <div class="input-block"
+                   ng-show="dueDateEditMode">
+                    <input type="text" placeholder="due date" autofocus>
+                </div>
+                <label
+                   ng-click="dueDateEditMode = true"
+                   ng-show="!dueDateEditMode">
+                    due date
+                </label>
+            </div>
+        </div>
     </header>
     <section class="main">
-        <input class="toggle-all" type="checkbox">
-        <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
             <li class="completed">
                 <div class="view">
@@ -13,7 +50,7 @@
                         Make fist commit
                     </label>
                     <label class="task-options">
-                        units | measure | progress | todayLeft | dueDate
+                        goalValue | metric | progress | todayLeft | dueDate
                     </label>
                     <button class="delete"></button>
                 </div>
@@ -25,7 +62,7 @@
                         Win the price
                     </label>
                     <label class="task-options">
-                        units | measure | progress | todayLeft | dueDate
+                        goalValue | metric | progress | todayLeft | dueDate
                     </label>
                     <button class="delete"></button>
                 </div>
