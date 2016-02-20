@@ -1,0 +1,22 @@
+@import "variables.less";
+@import "mixins.less";
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: row;
+  flex: 0 auto;
+  justify-content: center;
+  padding-top: @header-height;
+
+}
+
+.sidebar {
+  width: @sidebar-width;
+  flex: inherit;
+  padding-right: 15px;
+}

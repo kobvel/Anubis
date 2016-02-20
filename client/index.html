@@ -7,19 +7,17 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row app-body">
-            <section class="col-md-3">
-                <div class="common-block">
-                    <div class="input-block search-block">
-                        <input type="text" placeholder="Search" autofocus>
-                    </div>
-                    <filters></filters>
+    <div class="app-main">
+        <aside class="sidebar">
+            <div class="common-block">
+                <div class="input-block search-block">
+                    <input type="text" placeholder="Search" autofocus>
                 </div>
-            </section>
-            <section class="todoapp col-md-9">
-                <ui-view></ui-view>
-            </section>
-        </div>
+                <filters></filters>
+            </div>
+        </aside>
+        <section class="todoapp">
+            <ui-view></ui-view>
+        </section>
     </div>
 </body>

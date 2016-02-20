@@ -30,9 +30,9 @@ check
 email
 angularui:angular-google-maps
 twbs:bootstrap
-less
 angularui:angular-ui-bootstrap
 vishalm:angular-toastr
 dotansimha:accounts-ui-angular
 fortawesome:fontawesome
 d3js:d3
+flemay:less-autoprefixer
