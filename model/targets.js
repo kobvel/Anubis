@@ -1,14 +1,15 @@
 Targets = new Mongo.Collection("targets");
 
 Targets.allow({
-    insert: function (userId, project) {
-        return userId && project.owner === userId;
+    insert: function (userId, target) {
+        return userId && target.owner === userId;
     },
-    update: function (userId, project, fields, modifier) {
-        return userId && project.owner === userId;
+    update: function (userId, target, fields, modifier) {
+        return userId && target.owner === userId;
     },
-    remove: function (userId, project) {
-        return userId && project.owner === userId;
+    remove: function (userId, target) {
+        return userId && target.owner === userId;
     }
 
 });
+
