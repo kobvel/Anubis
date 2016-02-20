@@ -2,9 +2,9 @@ angular
     .module("anubis")
     .controller("TargetListController", TargetListController);
 
-TargetListController.$inject = ["$scope", "$meteor", "$rootScope", "toastr", "$timeout"];
+TargetListController.$inject = ["$scope", "$meteor", "$rootScope", "toastr", "$timeout", "metricService"];
 
-function TargetListController($scope, $meteor, $rootScope, toastr, $timeout) {
+function TargetListController($scope, $meteor, $rootScope, toastr, $timeout, metricService) {
     var self = this;
     self.newTarget = {
 
@@ -13,8 +13,8 @@ function TargetListController($scope, $meteor, $rootScope, toastr, $timeout) {
 
     self.user = Meteor.userId();
     self.targets = $meteor.collection(Targets).subscribe('targets');
-    
-    
+
+
     $timeout(function () {
         self.targets.forEach(function (element) {
             console.log(element.targets);
@@ -30,11 +30,17 @@ function TargetListController($scope, $meteor, $rootScope, toastr, $timeout) {
 
     self.countToday = function (progress, frequency, goalDate, goal) {
         var total = getTotal(progress);
-        var rest = total;
-        // progress.forEach(function (element, index, arr) {
+        var rest = goal - total;
 
-        // }, this);
+        var onMinute = 60 * 1000; // hours*minutes*seconds*milliseconds
+        var firstDate = new Date()
+        var secondDate = new Date(goalDate);
+
+        var diffMinutes = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (onMinute))) + 1440;
+        console.log(rest, diffMinutes/frequency);
+        return Math.round(rest / (diffMinutes / frequency));
     }
+
 
     self.countTotalProgress = function (progress, goal) {
         var total = getTotal(progress);
@@ -47,5 +53,8 @@ function TargetListController($scope, $meteor, $rootScope, toastr, $timeout) {
             total += progress[i].value;
         }
         return total;
+    }
+    self.getMetric = function (mins) {
+        return metricService.getMetric(mins);
     }
 }
