@@ -4,13 +4,13 @@ angular
 
     })
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
-        $locationProvider.html5Mode(true);
-
+        // $locationProvider.html5Mode(true);
+        $urlRouterProvider.otherwise('/targets');
+        
         $stateProvider
             .state('targets', {
                 url: '/targets',
-                templateUrl: 'client/components/target/target-list.ng.html',
+                templateUrl: 'client/src/components/target/target-list.ng.html',
                 controller: 'TargetListController as vm'
             })
-        $urlRouterProvider.otherwise('/targets');
     });
