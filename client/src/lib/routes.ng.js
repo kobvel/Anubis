@@ -7,16 +7,10 @@ angular
         $locationProvider.html5Mode(true);
 
         $stateProvider
-            .state('projects', {
-                url: '/projects',
-                templateUrl: 'client/components/projects/views/projects-list.ng.html',
-                controller: 'ProjectsListCtrl as projectsCtrl'
+            .state('targets', {
+                url: '/targets',
+                templateUrl: 'client/components/target/target-list.ng.html',
+                controller: 'TargetListController as vm'
             })
-            .state('projects', {
-                url: '/projects',
-                templateUrl: 'client/components/projects/views/projects-list.ng.html',
-                controller: 'ProjectsListCtrl as projectsCtrl'
-            });
-
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/targets');
     });

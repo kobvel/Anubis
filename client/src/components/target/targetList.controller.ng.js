@@ -6,7 +6,7 @@ TargetListController.$inject = ["$scope", "$meteor"];
 
 function TargetListController($scope, $meteor) {
     var self = this;
-
+    console.log('Hello there');
     self.user = Meteor.userId();
     self.targets = $meteor.collection(Targets).subscribe('targets');
     $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
