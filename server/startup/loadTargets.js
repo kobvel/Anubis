@@ -42,6 +42,6 @@ Meteor.startup(function () {
             }
         ];
 
-        Targets.insert(owner: 1, targets: targetList);
+        Targets.insert({owner: 1, targets: targetList});
     }
 });
