@@ -2,6 +2,7 @@ angular.module('anubis',
     ['angular-meteor',
         'ui.router',
         'ngAnimate',
+        'toastr',
         'ui.bootstrap'
     ]);
 
