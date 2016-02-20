@@ -1,41 +1,30 @@
 <div>
     <header class="header">
         <div class="new-todo-field">
-            <input class="new-todo" placeholder="Your next task" autofocus
-               ng-focus="showTaskCreateOption = true">
+            <input class="new-todo" placeholder="Your next task" autofocus ng-focus="showTaskCreateOption = true">
         </div>
-        <div class="row"
-           ng-show="showTaskCreateOption">
+        <div class="row" ng-show="showTaskCreateOption">
             <div class="col-md-4 goalValue-field">
-                <div class="input-block"
-                   ng-show="goalValueEditMode">
+                <div class="input-block" ng-show="goalValueEditMode">
                     <input type="text" placeholder="goal value" autofocus>
                 </div>
-                <label
-                   ng-click="goalValueEditMode = true"
-                   ng-show="!goalValueEditMode">
+                <label ng-click="goalValueEditMode = true" ng-show="!goalValueEditMode">
                     goal value
                 </label>
             </div>
             <div class="col-md-4 metric-field">
-                <div class="input-block"
-                   ng-show="metricEditMode">
+                <div class="input-block" ng-show="metricEditMode">
                     <input type="text" placeholder="metric" autofocus>
                 </div>
-                <label
-                   ng-click="metricEditMode = true"
-                   ng-show="!metricEditMode">
+                <label ng-click="metricEditMode = true" ng-show="!metricEditMode">
                     metric
                 </label>
             </div>
             <div class="col-md-4 due-date-field">
-                <div class="input-block"
-                   ng-show="dueDateEditMode">
+                <div class="input-block" ng-show="dueDateEditMode">
                     <input type="text" placeholder="due date" autofocus>
                 </div>
-                <label
-                   ng-click="dueDateEditMode = true"
-                   ng-show="!dueDateEditMode">
+                <label ng-click="dueDateEditMode = true" ng-show="!dueDateEditMode">
                     due date
                 </label>
             </div>
@@ -43,7 +32,7 @@
     </header>
     <section class="main">
         <ul class="todo-list">
-           <li class="completed">
+            <li class="completed">
                 <div class="view">
                     <input class="toggle" type="checkbox" checked>
                     <label class="task-name">
@@ -62,7 +51,8 @@
                     </label>
                     <label class="task-options">
                         {{item.goalValue}} | {{item.metric}} | {{vm.countTotalProgress(item.progress,item.goalValue) + '%'}} | {{vm.countToday(item.progress,
-                        item.frequency,item.goalDate, item.goalValue)}} | {{item.goalDate | date}}
+                        item.frequency,item.goalDate, item.goalValue)}} {{ 'per '+ vm.getMetric(item.frequency)}} | {{item.goalDate
+                        | date}}
                     </label>
                     <button class="delete"></button>
                 </div>
