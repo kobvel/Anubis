@@ -16,7 +16,10 @@ angular
                 templateUrl: 'client/src/components/target/targetList/target-list.ng.html',
                 controller: 'TargetListController as vm'
             })
-
+            .state('d3', {
+                url: '/d3',
+                templateUrl: 'client/graphPlayground/d3.html'
+            })
 
         angular.extend(toastrConfig, {
             allowHtml: false,
