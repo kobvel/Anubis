@@ -1,5 +1,6 @@
-/* Top Bar Start */
-
+/*
+    Top Bar
+*/
 #top-bar {
   height: 43px;
   top: 0;
@@ -20,14 +21,14 @@
   font-weight: 100;
 }
 
-/* Top Bar End */
-
-/* TodoApp Body Start */
-
+/*
+    TodoApp Body
+*/
 html,
 body {
   margin: 0;
   padding: 0;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 button {
@@ -49,10 +50,9 @@ button {
 body {
   .app-body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: #f5f5f5;
     color: #4d4d4d;
-    min-width: 230px;
-    max-width: 550px;
+    min-width: 430px;
+    max-width: 1090px;
     margin: 60px auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -69,9 +69,8 @@ input[type="checkbox"] {
   display: none;
 }
 
-.todoapp {
+.todoapp, .todo-menu {
   background: #fff;
-  margin: 30px 0 40px 0;
   position: relative;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
   0 25px 50px 0 rgba(0, 0, 0, 0.1);
@@ -377,4 +376,53 @@ html .clear-completed:active {
   }
 }
 
-/* TodoApp Body End */
+
+/*
+    Inputs
+*/
+input[type="text"] {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+.search-block input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px rgba(79, 208, 208, 0.32);
+  transition: border 0.3s;
+}
+
+.search-block input[type="text"]:focus,
+.search-block input[type="text"].focus {
+  border-bottom: solid 2px #4FD0D0;
+}
+
+/*
+    Common block
+*/
+.common-block {
+  background: #FFFFFF;
+  min-height: 250px;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.search-block {
+  padding: 7px;
+}
+/*
+    Filters List
+*/
+.filters-list {
+
+}
