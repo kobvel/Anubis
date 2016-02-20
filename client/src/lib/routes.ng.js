@@ -18,5 +18,5 @@ angular
                 controller: 'ProjectsListCtrl as projectsCtrl'
             });
 
-        $urlRouterProvider.otherwise('/projects');
+        $urlRouterProvider.otherwise('/');
     });
