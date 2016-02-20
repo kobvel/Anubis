@@ -30,35 +30,7 @@
             </div>
         </div>
     </header>
-    <section class="main">
-        <ul class="todo-list">
-            <li class="completed">
-                <div class="view">
-                    <input class="toggle" type="checkbox" checked>
-                    <label class="task-name">
-                        Make fist commit
-                    </label>
-                    <label class="task-options">
-                        goalValue | metric | progress | todayLeft | dueDate
-                    </label>
-                    <button class="delete"></button>
-                </div>
-            </li>
-            <li ng-repeat="item in vm.targets[0].targets track by $index">
-                <div class="view">
-                    <input class="toggle" type="checkbox">
-                    <label class="task-name" ng-bind="item.name">
-                    </label>
-                    <label class="task-options">
-                        {{item.goalValue}} | {{item.metric}} | {{vm.countTotalProgress(item.progress,item.goalValue) + '%'}} | {{vm.countToday(item.progress,
-                        item.frequency,item.goalDate, item.goalValue)}} {{ 'per '+ vm.getMetric(item.frequency)}} | {{item.goalDate
-                        | date}}
-                    </label>
-                    <button class="delete"></button>
-                </div>
-            </li>
-        </ul>
-    </section>
+    <target-list targets="vm.targets[0].targets"></target-list>
     <footer class="footer">
         <span class="todo-count"><strong>0</strong> item left</span>
         <ul class="filters">
