@@ -7,7 +7,6 @@ angular
         $stateProvider,
         $locationProvider,
         toastrConfig) {
-        // $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/targets');
 
         $stateProvider
