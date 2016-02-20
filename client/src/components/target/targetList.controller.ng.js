@@ -8,7 +8,7 @@ function TargetListController($scope, $meteor) {
     var self = this;
 
     self.user = Meteor.userId();
-    self.projects = $meteor.collection(Projects).subscribe('projects');
+    self.targets = $meteor.collection(Targets).subscribe('targets');
     $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
 }
