@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="EslintConfiguration">
-    <custom-configuration-file used="true" path="$PROJECT_DIR$/../../../EPAM/Projects/DHL/workspace/dhl-ewf/cq/dhl-view/src/main/content/jcr_root/etc/clientlibs/dhl/global/.eslintrc" />
-  </component>
-</project>
