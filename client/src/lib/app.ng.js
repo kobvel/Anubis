@@ -3,7 +3,8 @@ angular.module('anubis',
         'ui.router',
         'ngAnimate',
         'toastr',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'accounts.ui'
     ]);
 
 function onReady() {
