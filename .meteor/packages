@@ -26,3 +26,4 @@ angularui:angular-ui-bootstrap
 accounts-google
 angular:angular-animate
 fortawesome:fontawesome
+vishalm:angular-toastr
