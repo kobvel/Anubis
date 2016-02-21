@@ -29,7 +29,8 @@ function TargetListController($scope, $timeout, metricService, toastr) {
         metricService: metricService,
         isTaksCompleted: isTaksCompleted,
         addTarget: addTarget,
-        isTargetNameFieldEmpty: isTargetNameFieldEmpty
+        isTargetNameFieldEmpty: isTargetNameFieldEmpty,
+        deleteTarget: deleteTarget
     });
 
 
@@ -91,8 +92,8 @@ function TargetListController($scope, $timeout, metricService, toastr) {
         return vm.countTotalProgress(item.progress, item.goalValue) >= 100;
     }
 
-    function addTarget() {
-        if (vm.taskName) {
+    function addTarget(formValid) {
+        if (vm.taskName && formValid) {
             vm.targets.push({
                 frequency: (vm.frequency) ? vm.frequency.value : '',
                 goalDate: vm.goalDate || '',
@@ -107,7 +108,7 @@ function TargetListController($scope, $timeout, metricService, toastr) {
             toastr.success('New target had been added', 'Anubis satisfied!');
             clearTargetAdditingForm();
         } else {
-            toastr.error('Please, fill in task name', 'Invalid name');
+            toastr.error('Please, fill in all fields correctly', 'Invalid form');
         }
     }
 
@@ -118,5 +119,9 @@ function TargetListController($scope, $timeout, metricService, toastr) {
 
     function isTargetNameFieldEmpty() {
         return vm.taskName === '';
+    }
+
+    function deleteTarget() {
+        toastr.warning('This is a public task, please, be sweet and do not delete it', 'It is not your task');
     }
 }

@@ -118,6 +118,12 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             vm.targets[0].targets.forEach(function(target) {
                 var data = [];
                 sum = 0;
+
+                //sort data chronologicaly for proper representation on graphs
+                target.progress.sort(function(a,b) {
+                    return a.date.getTime() - b.date.getTime();
+                });
+
                 target.progress.forEach(function(commit) {
                     var filter = getFilter();
                     if (!!target.goalValue && (filter === target.metric || filter === "" || filter === "Select metric")) {

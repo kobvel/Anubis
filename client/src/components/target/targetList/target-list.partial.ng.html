@@ -1,26 +1,27 @@
 <header class="header">
     <div class="new-todo-field">
+        <div class="col-md-1">
+            <div ng-class="vm.isTargetNameFieldEmpty() ? 'target-add-icon-unavailable' : 'target-add-icon'"
+               ng-click="vm.addTarget(goalForm.$valid)">
+                <i class="fa fa-plus fa-2x"></i>
+            </div>
+        </div>
         <div class="col-md-11">
             <input class="new-todo" placeholder="Your next task" autofocus maxlength="100"
                ng-focus="vm.showTaskCreateOption = true"
                ng-model="vm.taskName"
                required>
         </div>
-        <div class="col-md-1">
-            <div ng-class="vm.isTargetNameFieldEmpty() ? 'target-add-icon-unavailable' : 'target-add-icon'"
-               ng-click="vm.addTarget()">
-                <i class="fa fa-plus fa-2x"></i>
-            </div>
-        </div>
     </div>
     <div class="row"
          ng-show="vm.showTaskCreateOption">
         <div class="col-md-3 goalValue-field">
-            <div class="input-block">
+            <form name="goalForm" class="input-block">
                 <input type="text" placeholder="goal value" autofocus maxlength="7"
-                 ng-model="vm.goalValue"
-                 ng-pattern="vm.numbersPattern">
-            </div>
+                   ng-class="goalForm.$valid ? '' : 'field-error'"
+                   ng-model="vm.goalValue"
+                   ng-pattern="vm.numbersPattern">
+            </form>
         </div>
         <div class="col-md-3 metric-field">
             <div class="input-block">
@@ -54,8 +55,17 @@
                    ng-model="vm.taskCompleted[$index]"
                    ng-change="vm.taskCompleted[$index] = vm.isTaksCompleted(item)">
                 <div class="toggle" ng-show="vm.track === $index">
-                    <input type="text" placeholder="hello" ng-model="vm.currentValue" ng-pattern="vm.numbersPattern">
-                    <div ng-click="vm.trackTarget(vm.currentValue, $index)" class="btn btn-success">ok</div>
+                    <form name="progressForm">
+                        <input type="text" placeholder="0"
+                           ng-class="progressForm.$valid ? '' : 'field-error'"
+                           ng-model="vm.currentValue"
+                           ng-pattern="vm.numbersPattern">
+                        <button class="btn btn-success"
+                           ng-click="vm.trackTarget(vm.currentValue, $index)"
+                           ng-disabled="!progressForm.$valid">
+                            ok
+                        </button>
+                    </form>
                 </div>
                 <div class="task-content">
                   <div class="task-name" ng-bind="item.name"></div>
@@ -69,7 +79,7 @@
                       <div class="task-options-item">{{item.goalDate | date}}</div>
                   </div>
                 </div>
-                <button class="delete"></button>
+                <button class="delete" ng-click="vm.deleteTarget()"></button>
             </div>
         </li>
     </ul>
