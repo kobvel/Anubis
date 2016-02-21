@@ -97,18 +97,22 @@ function TargetListController($scope, $timeout, metricService, toastr) {
     }
 
     function addTarget() {
-        vm.targets.push({
-            frequency: vm.frequency.value,
-            goalDate: vm.goalDate,
-            goalValue: vm.goalValue,
-            metric: vm.metric,
-            metricShort: vm.metric.charAt(0),
-            name: vm.taskName,
-            progress: [],
-            startDate: (new Date()).toString(),
-            status: 'active'
-        });
-        toastr.success('New target had been added', 'Anubis satisfied!');
+        if (vm.taskName) {
+            vm.targets.push({
+                frequency: (vm.frequency) ? vm.frequency.value : '',
+                goalDate: vm.goalDate || '',
+                goalValue: vm.goalValue || '',
+                metric: vm.metric || '',
+                metricShort: (vm.metric) ? vm.metric.charAt(0) : '',
+                name: vm.taskName,
+                progress: [],
+                startDate: new Date(),
+                status: 'active'
+            });
+            toastr.success('New target had been added', 'Anubis satisfied!');
+        } else {
+            toastr.error('Please, fill in task name', 'Invalid name');
+        }
     }
 
     function showAllTargets() {

@@ -5,7 +5,8 @@
         </div>
         <input class="new-todo" placeholder="Your next task" autofocus
                ng-focus="showTaskCreateOption = true"
-               ng-model="vm.taskName">
+               ng-model="vm.taskName"
+               required>
     </div>
     <div class="row"
          ng-show="showTaskCreateOption">
