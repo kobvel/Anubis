@@ -23,23 +23,10 @@ function TargetListController($scope, $timeout, metricService, toastr) {
             name: 'month',
             value: 302400
         }],
-        targetsType: 'All',
         metricService: metricService,
-
         isTaksCompleted: isTaksCompleted,
-        addTarget: addTarget,
-        showAllTargets: showAllTargets,
-        showActiveTargets: showActiveTargets,
-        showCompletedTargets: showCompletedTargets,
-        isTargetsTypeAll: isTargetsTypeAll,
-        isTargetsTypeActive: isTargetsTypeActive,
-        isTargetsTypeCompleted: isTargetsTypeCompleted
+        addTarget: addTarget
     });
-    var targetsTypes = {
-        ALL: 'All',
-        ACTIVE: 'Active',
-        COMPLETED: 'Completed'
-    };
 
 
     vm.shoulDo = function (item) {
@@ -109,29 +96,5 @@ function TargetListController($scope, $timeout, metricService, toastr) {
             status: 'active'
         });
         toastr.success('New target had been added', 'Anubis satisfied!');
-    }
-
-    function showAllTargets() {
-        vm.targetsType = targetsTypes.ALL;
-    }
-
-    function showActiveTargets() {
-        vm.targetsType = targetsTypes.ACTIVE;
-    }
-
-    function showCompletedTargets() {
-        vm.targetsType = targetsTypes.COMPLETED;
-    }
-
-    function isTargetsTypeAll() {
-        return vm.targetsType === targetsTypes.ALL;
-    }
-
-    function isTargetsTypeActive() {
-        return vm.targetsType === targetsTypes.ACTIVE;
-    }
-
-    function isTargetsTypeCompleted() {
-        return vm.targetsType === targetsTypes.COMPLETED;
     }
 }

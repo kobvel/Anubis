@@ -7,7 +7,8 @@ function targetListDirective() {
         templateUrl: 'client/src/components/target/targetList/target-list.partial.ng.html',
         bindToController: {
             'targets': '=',
-            'targetMetric': '='
+            'targetMetric': '=',
+            'targetsType': '='
         },
         controllerAs: 'vm',
         scope: {},
