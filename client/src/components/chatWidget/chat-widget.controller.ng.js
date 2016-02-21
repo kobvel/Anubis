@@ -43,7 +43,6 @@ function ChatWidgetController($scope, $meteor, toastr, $element, $timeout, $inte
                 vm.chatIsDisabled = false;
                 vm.seconds = 5;
                 $interval.cancel(promise);
-                console.log(vm.messages);
             }, 5000);
         }
     }
