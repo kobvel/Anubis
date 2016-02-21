@@ -11,6 +11,7 @@ angular
 
         $stateProvider
             .state('app', {
+                abstract: true,
                 url: '',
                 templateUrl: 'client/src/components/target/targets-block.ng.html',
                 controller: 'TargetController as vm'
