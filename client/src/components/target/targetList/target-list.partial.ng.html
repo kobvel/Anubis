@@ -12,9 +12,13 @@
                 <button class="delete"></button>
             </div>
         </li>
-        <li ng-repeat="item in vm.targets | targetFilter:vm.targetMetric.metric track by $index">
+        <li ng-repeat="item in vm.targets | targetFilter:vm.targetMetric.metric track by $index"
+           ng-class="vm.isTaksCompleted(item) ? 'completed' : ''">
             <div class="view">
-                <input ng-hide="vm.track === $index" ng-click="vm.track = $index; vm.currentValue =''" class="toggle" type="checkbox">
+                <input class="toggle" type="checkbox"
+                   ng-hide="vm.track === $index"
+                   ng-click="vm.track = $index; vm.currentValue =''"
+                   ng-checked="vm.isTaksCompleted(item)">
                 <div ng-show="vm.track === $index">
                     <input type="text" class="toggle" placeholder="hello" ng-model="vm.currentValue">
                     <div ng-click="vm.trackTarget(vm.currentValue, $index)" class="success">ok</div>

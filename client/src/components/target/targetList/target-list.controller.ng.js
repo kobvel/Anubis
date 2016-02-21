@@ -7,8 +7,13 @@ TargetListController.$inject = ['$scope', '$timeout', 'metricService', '$reactiv
 function TargetListController($scope, $timeout, metricService, $reactive) {
     var vm = this;
 
-    vm.track = false;
-    vm.currentValue = '';
+    Object.assign(vm, {
+        track: false,
+        currentValue: '',
+
+        isTaksCompleted: isTaksCompleted
+    });
+
     console.log($reactive);
     $timeout(function () {
         console.log($scope.targets)
@@ -50,5 +55,9 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
             total += progress[i].value;
         }
         return total;
+    }
+
+    function isTaksCompleted(item) {
+        return vm.countTotalProgress(item.progress, item.goalValue) >= 100;
     }
 }
