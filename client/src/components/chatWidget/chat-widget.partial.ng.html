@@ -1,0 +1,5 @@
+<div class="common-block-chat" ui-keypress="{13:'vm.myFunc($event)'}">
+    <div class="input-block search-block">
+        <input type="text" placeholder="{{vm.chatIsDisabled ?'Whait 3 minutes' :'Chat Message'}}" autofocus ng-disabled="vm.chatIsDisabled" ng-keypress="vm.run($event)" ng-model="vm.currenMessage">
+    </div>
+</div>

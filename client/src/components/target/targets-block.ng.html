@@ -5,12 +5,13 @@
         </div>
         <filters targets="vm.targets[0].targets" target-metric="targetMetric"></filters>
     </div>
+    <hr>
+    <chat-widget></chat-widget>
 </section>
 <section class="todoapp col-md-9">
     <header class="header">
         <div class="new-todo-field">
-            <div class="target-add-icon"
-               ng-click="vm.addTarget()">
+            <div class="target-add-icon" ng-click="vm.addTarget()">
                 <i class="fa fa-plus fa-2x"></i>
             </div>
             <input class="new-todo" placeholder="Your next task" autofocus ng-focus="showTaskCreateOption = true">
