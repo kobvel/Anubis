@@ -80,7 +80,7 @@ function TargetListController($scope, $timeout, metricService, toastr) {
                 total += progress[i].value;
             }
         }
-        return total;
+        return Math.round(total * 100) / 100;
     }
 
     function isTaksCompleted(item) {
