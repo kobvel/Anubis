@@ -9,14 +9,24 @@ function GraphController($scope, $meteor, $timeout, metricService) {
 
     vm.user = Meteor.userId();
     vm.targets = $meteor.collection(Targets).subscribe('targets');
-    
-    $scope.$watch('vm.targets', function () {
-        InitChart();
+
+    var filterSelect = ".metric-dropdown > select";
+    var svgContainers = ["#main-chart", "#additional-chart"];
+
+    document.querySelector(filterSelect).addEventListener("change", function() {
+        InitChart(svgContainers[0]);
+        InitChart(svgContainers[1]);
+    });
+
+
+    $scope.$watch('vm.targets', function() {
+        InitChart(svgContainers[0]);
+        InitChart(svgContainers[1]);
     }, true);
 
 
-    function InitChart() {
-        nv.addGraph(function () {
+    function InitChart(svgParent) {
+        nv.addGraph(function() {
             var chart = nv.models.lineChart();
             var fitScreen = false;
             var width = 500;
@@ -27,8 +37,8 @@ function GraphController($scope, $meteor, $timeout, metricService) {
 
             chart.xAxis
                 .axisLabel('Time')
-                .tickFormat(function (d) {
-                    
+                .tickFormat(function(d) {
+
                     // if(chart.xAxis.range()[1].getTime()-chart.xAxis.range()[1] > )
                     return d3.time.format('%b %d %H:%M')(new Date(d));
                 });
@@ -36,19 +46,32 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             // .tickFormat(d3.format(',.2f'));
 
 
-            chart.lines.dispatch.on('elementClick', function (evt) {
+            chart.lines.dispatch.on('elementClick', function(evt) {
                 console.log(evt);
             });
 
+            var yAxisText = "";
+            if (svgParent === svgContainers[0]) {
+                yAxisText = "Progress, %";
+            } else {
+                var filterValue = getFilter();
+                if (filterValue === "" || filterValue === "Select metric") {
+                    yAxisText = "Progress";
+                } else {
+                    yAxisText = "Progress, " + filterValue;
+                }
+            }
+
+
             chart.yAxis
-                .axisLabel('Progress, %')
+                .axisLabel(yAxisText)
                 .tickFormat(d3.format(',.2f'));
-                console.warn(d3.select('#main-chart svg'));
-            d3.select('#main-chart svg')
+            console.warn(d3.select('#main-chart svg'));
+            d3.select(svgParent + ' svg')
                 .attr('perserveAspectRatio', 'xMinYMid')
                 .attr('width', width)
                 .attr('height', height)
-                .datum(prepareData());
+                .datum(prepareData(svgParent));
 
             setChartViewBox();
             resizeChart();
@@ -63,14 +86,14 @@ function GraphController($scope, $meteor, $timeout, metricService) {
                     .width(w)
                     .height(h);
 
-                d3.select('#main-chart svg')
+                d3.select(svgParent + ' svg')
                     .attr('viewBox', '0 0 ' + w + ' ' + h)
                     .transition().duration(500)
                     .call(chart);
             }
 
             function resizeChart() {
-                var container = d3.select('#main-chart');
+                var container = d3.select(svgParent);
                 var svg = container.select('svg');
 
                 if (fitScreen) {
@@ -89,16 +112,20 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             return chart;
         });
 
-        function prepareData() {
+        function prepareData(svgParent) {
 
             var output = [];
-            vm.targets[0].targets.forEach(function (target) {
+            vm.targets[0].targets.forEach(function(target) {
                 var data = [];
                 sum = 0;
-                target.progress.forEach(function (commit) {
+                target.progress.forEach(function(commit) {
                     var filter = getFilter();
                     if (!!target.goalValue && (filter === target.metric || filter === "" || filter === "Select metric")) {
-                        sum += commit.value / target.goalValue * 100;
+                        if (svgParent === svgContainers[0]) {
+                            sum += commit.value / target.goalValue * 100;
+                        } else {
+                            sum = commit.value;
+                        }
                         data.push({ x: commit.date.getTime(), y: sum });
                     }
                 });
@@ -124,14 +151,11 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             }
             return color;
         }
-
-        function getFilter() {
-            var e = document.querySelector(".metric-dropdown > select");
-            var strUser = e.options[e.selectedIndex].text;
-            e.addEventListener("change", InitChart);
-            return strUser;
-        }
     }
-    
 
+    function getFilter() {
+        var e = document.querySelector(filterSelect);
+        var strUser = e.options[e.selectedIndex].text;
+        return strUser;
+    }
 }
