@@ -3,7 +3,7 @@
         <input type="text" placeholder="{{vm.chatIsDisabled ?'Wait ' +vm.seconds +' seconds' :'Chat Message'}}" autofocus ng-disabled="vm.chatIsDisabled"
         ng-keypress="vm.run($event)" ng-model="vm.currenMessage">
         <ul>
-            <li ng-repeat="item in vm.messages[0]">{{item.author}}</li>
+            <li ng-repeat="item in vm.messages track by $index">{{item.author+ ':   ' +item.message}}</li>
         </ul>
     </div>
 </div>

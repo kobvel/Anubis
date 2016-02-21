@@ -9,22 +9,21 @@ ChatWidgetController.$inject = ['$scope', '$meteor', 'toastr', '$element', '$tim
 function ChatWidgetController($scope, $meteor, toastr, $element, $timeout, $interval) {
     var vm = this;
     var promise;
-    vm.user = Meteor.userId();
+    vm.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
+    vm.user = Meteor.userId();
+    vm.email = Meteor.user().emails[0].address;
     vm.chatIsDisabled = false;
     vm.currenMessage = '';
     vm.seconds = 5;
 
-
     vm.messages = $meteor.collection(Messages).subscribe('messages');
-    var messages = vm.messages;
 
     vm.run = function (event) {
         if (event.which === 13) {
             vm.chatIsDisabled = true;
-            console.log(messages)
-            Array.prototype.push.call(messages[0], { author: 'Anonymus', message: vm.currenMessage })
-            // messages[0].push({ author: 'Anonymus', message: vm.currenMessage });
+            vm.messages.push({ author: vm.email || 'Anonymus', message: vm.currenMessage });
+            console.log(vm.user);
             vm.currenMessage = '';
 
             promise = $interval(function () {
