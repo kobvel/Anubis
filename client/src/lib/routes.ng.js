@@ -10,12 +10,16 @@ angular
         $urlRouterProvider.otherwise('/targets');
 
         $stateProvider
-            .state('targets', {
-                url: '/targets',
+            .state('app', {
+                url: '',
                 templateUrl: 'client/src/components/target/targets-block.ng.html',
                 controller: 'TargetController as vm'
             })
-            .state('d3', {
+            .state('app.targets', {
+                url: '/targets',
+                template: '<target-list targets="vm.targets[0].targets" target-metric="targetMetric"></target-list>',
+            })
+            .state('app.d3', {
                 url: '/d3',
                 templateUrl: 'client/src/components/graphPlayground/d3-layout.html',
                 controller: 'GraphController as vm'
