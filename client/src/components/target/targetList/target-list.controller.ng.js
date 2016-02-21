@@ -29,7 +29,8 @@ function TargetListController($scope, $timeout, metricService, toastr) {
         metricService: metricService,
         isTaksCompleted: isTaksCompleted,
         addTarget: addTarget,
-        isTargetNameFieldEmpty: isTargetNameFieldEmpty
+        isTargetNameFieldEmpty: isTargetNameFieldEmpty,
+        deleteTarget: deleteTarget
     });
 
 
@@ -118,5 +119,9 @@ function TargetListController($scope, $timeout, metricService, toastr) {
 
     function isTargetNameFieldEmpty() {
         return vm.taskName === '';
+    }
+
+    function deleteTarget() {
+        toastr.warning('This is a public task, please, be sweet and do not delete it', 'It is not your task');
     }
 }
