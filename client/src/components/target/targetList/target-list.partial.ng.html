@@ -1,16 +1,16 @@
 <header class="header">
     <div class="new-todo-field">
-        <div class="col-md-1">
-            <div ng-class="vm.isTargetNameFieldEmpty() ? 'target-add-icon-unavailable' : 'target-add-icon'"
-               ng-click="vm.addTarget(goalForm.$valid)">
-                <i class="fa fa-plus fa-2x"></i>
-            </div>
-        </div>
         <div class="col-md-11">
             <input class="new-todo" placeholder="Your next task" autofocus maxlength="100"
                ng-focus="vm.showTaskCreateOption = true"
                ng-model="vm.taskName"
                required>
+        </div>
+        <div class="col-md-1">
+            <div ng-class="vm.isTargetNameFieldEmpty() ? 'target-add-icon-unavailable' : 'target-add-icon'"
+               ng-click="vm.addTarget(goalForm.$valid)">
+                <i class="fa fa-plus fa-2x"></i>
+            </div>
         </div>
     </div>
     <div class="row"
