@@ -11,7 +11,7 @@
         <div class="metric-dropdown">
             <select class="form-control"
                ng-model="vm.targetMetric"
-               ng-options="target.metric for target in vm.targets"
+               ng-options="target.metric for target in vm.targets | unique:'metric'"
                ng-change="vm.filterByMetric()">
                 <option value="">Select metric</option>
             </select>
