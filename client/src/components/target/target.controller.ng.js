@@ -9,4 +9,5 @@ function TargetController($scope, $meteor, toastr, metricService) {
     vm.user = Meteor.userId();
     vm.targets = $meteor.collection(Targets).subscribe('targets');
     vm.metricService = metricService;
+    vm.targetsType = 'All';
 }

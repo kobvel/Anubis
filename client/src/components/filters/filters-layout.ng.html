@@ -1,20 +1,25 @@
 <div class="filters-list">
-    <div class="col-md-12 inbox-filter">
-        <i class="fa fa-tasks"></i>
-        Inbox
-    </div>
-    <div class="col-md-12 date-filter">
-        <i class="fa fa-calendar"></i>
-        Today
-    </div>
     <div class="col-md-12 metric-filter">
         <div class="metric-dropdown">
-            <select class="form-control"
-               ng-model="vm.metricService.target"
-               ng-options="target.metric for target in vm.targets | unique:'metric'"
-               ng-change="vm.filterByMetric()">
+            <select class="form-control" ng-model="vm.metricService.target" ng-options="target.metric for target in vm.targets | unique:'metric'"
+            ng-change="vm.filterByMetric()">
                 <option value="">Select metric</option>
             </select>
         </div>
+    </div>
+    <div class="col-md-12 inbox-filter">
+        <a href="#" ng-class="vm.isTargetsTypeAll() ? 'selected' : ''" ng-click="vm.showAllTargets()">
+                All [12]
+            </a>
+    </div>
+    <div class="col-md-12 date-filter">
+        <a href="#" ng-class="vm.isTargetsTypeActive() ? 'selected' : ''" ng-click="vm.showActiveTargets()">
+                Active [12]
+            </a>
+    </div>
+    <div class="col-md-12 date-filter">
+        <a href="#" ng-class="vm.isTargetsTypeCompleted() ? 'selected' : ''" ng-click="vm.showCompletedTargets()">
+                Completed [1]
+            </a>
     </div>
 </div>

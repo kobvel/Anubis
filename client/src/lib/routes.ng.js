@@ -18,7 +18,7 @@ angular
             })
             .state('app.targets', {
                 url: '/targets',
-                template: '<target-list targets="vm.targets[0].targets" target-metric="targetMetric"></target-list>',
+                template: '<target-list targets="vm.targets[0].targets" target-metric="targetMetric" targets-type="vm.targetsType"></target-list>',
             })
             .state('app.d3', {
                 url: '/d3',

@@ -8,7 +8,8 @@ function filtersDirective() {
         controllerAs: 'vm',
         bindToController: {
             'targets': '=',
-            'targetMetric': '='
+            'targetMetric': '=',
+            'targetsType': '='
         },
         scope: {},
         templateUrl: 'client/src/components/filters/filters-layout.ng.html'
