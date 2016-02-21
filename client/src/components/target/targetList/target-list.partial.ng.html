@@ -88,12 +88,12 @@
                 </label>
 
                 <label class="task-options">
-                    <div style="float: left" ng-bind="item.goalValue">{{item.goalValue}}</div>
-                    <div style="float: left" ng-bind="'|' + item.metric"> </div>
-                    <div style="float: left" ng-bind="'|' + vm.countTotalProgress(item.progress,item.goalValue)  + '% '"></div>
-                    <div style="float: left" ng-bind="'|' + vm.shoulDo(item) + ' per ' + vm.getMetric(item.frequency)"></div>
-                    <div style="float: left" ng-bind="'|' + vm.getTotal(item.progress, true) + item.metric +' today'"></div>
-                    <div style="float: left">| {{item.goalDate | date}}</div>
+                    <div style="float: left" ng-if="item.goalValue" ng-bind="item.goalValue + ' | '"></div>
+                    <div style="float: left" ng-bind="item.metric + ' |' "> </div>
+                    <div style="float: left" ng-if="vm.countTotalProgress(item.progress,item.goalValue)" ng-bind="vm.countTotalProgress(item.progress,item.goalValue)  + '% |'"></div>
+                    <div style="float: left" ng-if="vm.shoulDo(item)" ng-bind="vm.shoulDo(item) + ' per ' + vm.getMetric(item.frequency) + ' |'"></div>
+                    <div style="float: left" ng-bind="vm.getTotal(item.progress, true) +' '+ item.metric +' today |'"></div>
+                    <div style="float: left">{{item.goalDate | date}}</div>
                 </label>
                 <button class="delete"></button>
             </div>
