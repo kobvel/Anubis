@@ -35,6 +35,9 @@ vishalm:angular-toastr
 dotansimha:accounts-ui-angular
 fortawesome:fontawesome
 d3js:d3
+<<<<<<< HEAD
 nvd3:nvd3
 rajit:bootstrap3-datepicker
+=======
+>>>>>>> e1cf9474f4f2e1d98212d57cdef2405554683ef9
 flemay:less-autoprefixer
