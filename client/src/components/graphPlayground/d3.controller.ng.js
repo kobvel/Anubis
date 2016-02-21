@@ -9,13 +9,14 @@ function GraphController($scope, $meteor, $timeout, metricService) {
 
     vm.user = Meteor.userId();
     vm.targets = $meteor.collection(Targets).subscribe('targets');
-
-    $timeout(function() {
+    
+    $scope.$watch('vm.targets', function () {
         InitChart();
-    }, 3000);
+    }, true);
+
 
     function InitChart() {
-        nv.addGraph(function() {
+        nv.addGraph(function () {
             var chart = nv.models.lineChart();
             var fitScreen = false;
             var width = 600;
@@ -26,7 +27,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
 
             chart.xAxis
                 .axisLabel('Time')
-                .tickFormat(function(d) {
+                .tickFormat(function (d) {
                     
                     // if(chart.xAxis.range()[1].getTime()-chart.xAxis.range()[1] > )
                     return d3.time.format('%b %d %H:%M')(new Date(d));
@@ -35,7 +36,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             // .tickFormat(d3.format(',.2f'));
 
 
-            chart.lines.dispatch.on('elementClick', function(evt) {
+            chart.lines.dispatch.on('elementClick', function (evt) {
                 console.log(evt);
             });
 
@@ -90,10 +91,10 @@ function GraphController($scope, $meteor, $timeout, metricService) {
 
         function prepareData() {
             var output = [];
-            vm.targets[0].targets.forEach(function(target) {
+            vm.targets[0].targets.forEach(function (target) {
                 var data = [];
                 sum = 0;
-                target.progress.forEach(function(commit) {
+                target.progress.forEach(function (commit) {
                     if (!!target.goalValue) {
                         sum += commit.value / target.goalValue * 100;
                         data.push({ x: commit.date.getTime(), y: sum });
@@ -107,7 +108,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
                         color: getRandomColor()
                     });
                 }
-                
+
             });
 
             return output;
