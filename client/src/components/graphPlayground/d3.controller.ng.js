@@ -43,7 +43,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
                 .axisLabel('Progress, %')
                 .tickFormat(d3.format(',.2f'));
 
-            d3.select('#chart1 svg')
+            d3.select('#main-chart svg')
                 .attr('perserveAspectRatio', 'xMinYMid')
                 .attr('width', width)
                 .attr('height', height)
@@ -62,14 +62,14 @@ function GraphController($scope, $meteor, $timeout, metricService) {
                     .width(w)
                     .height(h);
 
-                d3.select('#chart1 svg')
+                d3.select('#main-chart svg')
                     .attr('viewBox', '0 0 ' + w + ' ' + h)
                     .transition().duration(500)
                     .call(chart);
             }
 
             function resizeChart() {
-                var container = d3.select('#chart1');
+                var container = d3.select('#main-chart');
                 var svg = container.select('svg');
 
                 if (fitScreen) {

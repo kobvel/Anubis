@@ -10,67 +10,6 @@
         <chat-widget targets="vm.targets[0].targets"></chat-widget>
     </aside>
     <section class="todoapp">
-        <header class="header">
-            <div class="new-todo-field">
-                <div class="target-add-icon" ng-click="vm.addTarget()">
-                    <i class="fa fa-plus fa-2x"></i>
-                </div>
-                <input class="new-todo" placeholder="Your next task" autofocus
-                   ng-focus="showTaskCreateOption = true"
-                   ng-model="vm.taskName">
-            </div>
-            <div class="row"
-               ng-show="showTaskCreateOption">
-                <div class="col-md-3 goalValue-field">
-                    <div class="input-block"
-                       ng-show="goalValueEditMode">
-                        <input type="text" placeholder="goal value" autofocus ng-model="vm.goalValue">
-                    </div>
-                    <label
-                       ng-click="goalValueEditMode = true"
-                       ng-show="!goalValueEditMode">
-                        goal value
-                    </label>
-                </div>
-                <div class="col-md-3 metric-field">
-                    <div class="input-block"
-                       ng-show="metricEditMode">
-                        <input type="text" placeholder="metric" autofocus ng-model="vm.metric">
-                    </div>
-                    <label
-                       ng-click="metricEditMode = true"
-                       ng-show="!metricEditMode">
-                        metric
-                    </label>
-                </div>
-                <div class="col-md-3 frequency-field">
-                    <div class="input-block"
-                       ng-show="frequencyEditMode">
-                        <select class="form-control"
-                                ng-model="vm.frequency"
-                                ng-options="frequency.name for frequency in vm.frequencies">
-                            <option value="">Select frequency</option>
-                        </select>
-                    </div>
-                    <label
-                       ng-click="frequencyEditMode = true"
-                       ng-show="!frequencyEditMode">
-                        frequency
-                    </label>
-                </div>
-                <div class="col-md-3 due-date-field">
-                    <div class="input-block"
-                       ng-show="dueDateEditMode">
-                        <date-picker-custom date="vm.goalDate"></date-picker-custom>
-                    </div>
-                    <label
-                       ng-click="dueDateEditMode = true"
-                       ng-show="!dueDateEditMode">
-                        due date
-                    </label>
-                </div>
-            </div>
-        </header>
         <ui-view></ui-view>
     </section>
 </div>
