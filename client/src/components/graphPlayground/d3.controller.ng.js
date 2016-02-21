@@ -19,7 +19,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
         nv.addGraph(function () {
             var chart = nv.models.lineChart();
             var fitScreen = false;
-            var width = 600;
+            var width = 500;
             var height = 300;
             var zoom = 1;
 
@@ -43,7 +43,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             chart.yAxis
                 .axisLabel('Progress, %')
                 .tickFormat(d3.format(',.2f'));
-
+                console.warn(d3.select('#main-chart svg'));
             d3.select('#main-chart svg')
                 .attr('perserveAspectRatio', 'xMinYMid')
                 .attr('width', width)
@@ -96,7 +96,8 @@ function GraphController($scope, $meteor, $timeout, metricService) {
                 var data = [];
                 sum = 0;
                 target.progress.forEach(function (commit) {
-                    if (!!target.goalValue && getFilter() === target.metric) {
+                    var filter = getFilter();
+                    if (!!target.goalValue && (filter === target.metric || filter === "" || filter === "Select metric")) {
                         sum += commit.value / target.goalValue * 100;
                         data.push({ x: commit.date.getTime(), y: sum });
                     }
