@@ -46,12 +46,16 @@ function TargetListController($scope, $timeout, metricService, toastr) {
     };
 
     vm.trackTarget = function (value, index) {
-        vm.targets[index].progress.push({
-            date: new Date(),
-            value: Number(value)
-        });
+        if (value) {
+            vm.targets[index].progress.push({
+                date: new Date(),
+                value: Number(value)
+            });
+            toastr.success(getTotal(vm.targets[index].progress) + ' TODAY', 'You are coming closer to target!');
+
+        }
+
         vm.track = false;
-        toastr.success(getTotal(vm.targets[index].progress) + ' TODAY', 'You are coming closer to target!');
 
         if (vm.isTaksCompleted(vm.targets[index])) {
             vm.targets[index].status = 'done';
