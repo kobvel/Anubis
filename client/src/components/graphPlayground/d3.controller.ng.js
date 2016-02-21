@@ -1,14 +1,14 @@
 angular
-    .module("anubis")
-    .controller("GraphController", GraphController);
+    .module('anubis')
+    .controller('GraphController', GraphController);
 
-GraphController.$inject = ["$scope", "$meteor", "$timeout", "metricService"];
+GraphController.$inject = ['$scope', '$meteor', '$timeout', 'metricService'];
 
 function GraphController($scope, $meteor, $timeout, metricService) {
-    var self = this;
+    var vm = this;
 
-    self.user = Meteor.userId();
-    self.targets = $meteor.collection(Targets).subscribe('targets');
+    vm.user = Meteor.userId();
+    vm.targets = $meteor.collection(Targets).subscribe('targets');
 
     $timeout(function() {
         InitChart();
@@ -35,7 +35,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             // .tickFormat(d3.format(',.2f'));
 
 
-            chart.lines.dispatch.on("elementClick", function(evt) {
+            chart.lines.dispatch.on('elementClick', function(evt) {
                 console.log(evt);
             });
 
@@ -75,14 +75,14 @@ function GraphController($scope, $meteor, $timeout, metricService) {
                 if (fitScreen) {
                     // resize based on container's width AND HEIGHT
                     var windowSize = nv.utils.windowSize();
-                    svg.attr("width", windowSize.width);
-                    svg.attr("height", windowSize.height);
+                    svg.attr('width', windowSize.width);
+                    svg.attr('height', windowSize.height);
                 } else {
                     // resize based on container's width
                     var aspect = chart.width() / chart.height();
                     var targetWidth = parseInt(container.style('width'));
-                    svg.attr("width", targetWidth);
-                    svg.attr("height", Math.round(targetWidth / aspect));
+                    svg.attr('width', targetWidth);
+                    svg.attr('height', Math.round(targetWidth / aspect));
                 }
             }
             return chart;
@@ -90,7 +90,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
 
         function prepareData() {
             var output = [];
-            self.targets[0].targets.forEach(function(target) {
+            vm.targets[0].targets.forEach(function(target) {
                 var data = [];
                 sum = 0;
                 target.progress.forEach(function(commit) {
