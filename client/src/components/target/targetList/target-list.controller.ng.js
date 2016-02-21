@@ -87,8 +87,8 @@ function TargetListController($scope, $timeout, metricService, toastr) {
         return vm.countTotalProgress(item.progress, item.goalValue) >= 100;
     }
 
-    function addTarget() {
-        if (vm.taskName) {
+    function addTarget(formValid) {
+        if (vm.taskName && formValid) {
             vm.targets.push({
                 frequency: (vm.frequency) ? vm.frequency.value : '',
                 goalDate: vm.goalDate || '',
@@ -103,7 +103,7 @@ function TargetListController($scope, $timeout, metricService, toastr) {
             toastr.success('New target had been added', 'Anubis satisfied!');
             clearTargetAdditingForm();
         } else {
-            toastr.error('Please, fill in task name', 'Invalid name');
+            toastr.error('Please, fill in all fields correctly', 'Invalid form');
         }
     }
 
