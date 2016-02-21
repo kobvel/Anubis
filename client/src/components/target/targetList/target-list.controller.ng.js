@@ -27,14 +27,14 @@ function TargetListController($scope, $timeout, metricService, toastr) {
 
         isTaksCompleted: isTaksCompleted,
         addTarget: addTarget,
-        showAll: showAll,
+        showAllTargets: showAllTargets,
         showActiveTargets: showActiveTargets,
         showCompletedTargets: showCompletedTargets,
         isTargetsTypeAll: isTargetsTypeAll,
         isTargetsTypeActive: isTargetsTypeActive,
         isTargetsTypeCompleted: isTargetsTypeCompleted
     });
-    const targetsTypes = {
+    var targetsTypes = {
         ALL: 'All',
         ACTIVE: 'Active',
         COMPLETED: 'Completed'
