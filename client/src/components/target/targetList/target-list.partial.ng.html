@@ -27,9 +27,12 @@
                 </label>
 
                 <label class="task-options">
-                    {{item.goalValue}} | {{item.metric}} | {{vm.countTotalProgress(item.progress,item.goalValue) + '%'}} | {{vm.countToday(item.progress,
-                    item.frequency,item.goalDate, item.goalValue)}} {{ 'per '+ vm.getMetric(item.frequency)}} | {{item.goalDate
-                    | date}}
+                    <div style="float: left" ng-bind="item.goalValue">{{item.goalValue}}</div>
+                    <div style="float: left" ng-bind="'|' + item.metric"> </div>
+                    <div style="float: left" ng-bind="'|' + vm.countTotalProgress(item.progress,item.goalValue)  + '% '"></div>
+                    <div style="float: left" ng-bind="'|' + vm.shoulDo(item) + ' per ' + vm.getMetric(item.frequency)"></div>
+                    <div style="float: left" ng-bind="'|' + vm.getTotal(item.progress, true) + item.metric +' today'"></div>
+                    <div style="float: left">| {{item.goalDate | date}}</div>
                 </label>
                 <button class="delete"></button>
             </div>
@@ -40,13 +43,13 @@
     <span class="todo-count"><strong ng-bind='vm.targets.length'></strong> item left</span>
     <ul class="filters">
         <li>
-            <a class="selected" href="#">All</a>
+            <a class="selected" href="#">All [12]</a>
         </li>
         <li>
-            <a href="#">Active</a>
+            <a href="#">Active [12]</a>
         </li>
         <li>
-            <a href="#">Completed</a>
+            <a href="#">Completed [1]</a>
         </li>
     </ul>
     <button class="clear-completed">Clear completed</button>

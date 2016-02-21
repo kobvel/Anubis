@@ -21,15 +21,16 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
 
     }, 3000);
 
-    vm.countToday = function (progress, frequency, goalDate, goal) {
-        var total = getTotal(progress);
-        var rest = goal - total;
+    vm.shoulDo = function (item) {
+        var total = getTotal(item.progress);
+        var rest = item.goalValue - total;
 
         var onMinute = 60 * 1000; // seconds*milliseconds
         var firstDate = new Date();
-        var secondDate = new Date(goalDate);
+        var secondDate = new Date(item.goalDate);
         var diffMinutes = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (onMinute))) + 1440;
-        return Math.round(rest / (diffMinutes / frequency));
+
+        return Math.round(rest / (diffMinutes / item.frequency));
     };
 
     vm.trackTarget = function (value, index) {
@@ -48,11 +49,19 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
     vm.getMetric = function (mins) {
         return metricService.getMetric(mins);
     };
-
+    vm.getTotal = getTotal;
     function getTotal(progress) {
+        var filterDate = arguments[1];
+        filterDate = filterDate ? new Date() : false;
         var total = 0;
         for (var i = 0; i < progress.length; i++) {
-            total += progress[i].value;
+            if (filterDate) {
+                if (progress[i].date.toDateString() === filterDate.toDateString()) {
+                    total += progress[i].value;
+                }
+            } else {
+                total += progress[i].value;
+            }
         }
         return total;
     }
