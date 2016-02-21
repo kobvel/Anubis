@@ -3,7 +3,8 @@ angular.module('anubis')
 
 function metricService() {
     return {
-        getMetric: getMetric
+        getMetric: getMetric,
+        target: {}
     };
     function getMetric(minutes) {
         var metric = 'day';

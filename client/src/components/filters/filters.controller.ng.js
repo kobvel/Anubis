@@ -2,8 +2,9 @@ angular
     .module('anubis')
     .controller('FiltersController', FiltersController);
 
-FiltersController.$inject = ['$scope'];
+FiltersController.$inject = ['$scope', 'metricService'];
 
-function FiltersController($scope) {
+function FiltersController($scope, metricService) {
     const vm = this;
+    vm.metricService = metricService;
 }

@@ -24,6 +24,7 @@ function TargetListController($scope, $timeout, metricService, toastr) {
             value: 302400
         }],
         targetsType: 'All',
+        metricService: metricService,
 
         isTaksCompleted: isTaksCompleted,
         addTarget: addTarget,

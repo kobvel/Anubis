@@ -14,12 +14,10 @@ function targetFilter() {
                     } else {
                         return target.status === 'active';
                     }
+                } else if (targetMetric) {
+                    return target.metric === targetMetric && target.status === 'done';
                 } else {
-                    if (targetMetric === 'Completed') {
-                        return target.metric === targetMetric && target.status === 'done';
-                    } else {
-                        return target.status === 'done';
-                    }
+                    return target.status === 'done';
                 }
             });
         }
