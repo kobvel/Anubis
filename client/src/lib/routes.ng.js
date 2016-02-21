@@ -18,7 +18,8 @@ angular
             })
             .state('d3', {
                 url: '/d3',
-                templateUrl: 'client/graphPlayground/d3.html'
+                templateUrl: 'client/graphPlayground/d3.html',
+                controller: 'GraphController as vm'
             })
 
         angular.extend(toastrConfig, {
