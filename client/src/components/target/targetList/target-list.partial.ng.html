@@ -73,7 +73,7 @@
                 <button class="delete"></button>
             </div>
         </li>
-        <li ng-repeat="item in vm.targets | targetFilter:vm.targetMetric.metric track by $index"
+        <li ng-repeat="item in vm.targets | targetFilter:vm.targetMetric.metric:vm.targetsType track by $index"
            ng-class="vm.isTaksCompleted(item) ? 'completed' : ''">
             <div class="view">
                 <input class="toggle" type="checkbox"
@@ -104,13 +104,22 @@
     <span class="todo-count"><strong ng-bind='vm.targets.length'></strong> item left</span>
     <ul class="filters">
         <li>
-            <a class="selected" href="#" ng-click="vm.showAll()">All [12]</a>
+            <a href="#" ng-class="vm.isTargetsTypeAll() ? 'selected' : ''"
+               ng-click="vm.showActiveTargets()">
+                All [12]
+            </a>
         </li>
         <li>
-            <a href="#" ng-click="vm.showActiveTargets()">Active [12]</a>
+            <a href="#" ng-class="vm.isTargetsTypeActive() ? 'selected' : ''"
+               ng-click="vm.showActiveTargets()">
+                Active [12]
+            </a>
         </li>
         <li>
-            <a href="#" ng-click="vm.showCompletedTargets()">Completed [1]</a>
+            <a href="#" ng-class="vm.isTargetsTypeCompleted() ? 'selected' : ''"
+               ng-click="vm.showCompletedTargets()">
+                Completed [1]
+            </a>
         </li>
     </ul>
     <button class="clear-completed">Clear completed</button>

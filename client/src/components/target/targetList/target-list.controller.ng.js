@@ -23,10 +23,23 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
             name: 'month',
             value: 302400
         }],
+        targetsType: 'All',
 
         isTaksCompleted: isTaksCompleted,
-        addTarget: addTarget
+        addTarget: addTarget,
+        showAll: showAll,
+        showActiveTargets: showActiveTargets,
+        showCompletedTargets: showCompletedTargets,
+        isTargetsTypeAll: isTargetsTypeAll,
+        isTargetsTypeActive: isTargetsTypeActive,
+        isTargetsTypeCompleted: isTargetsTypeCompleted
+
     });
+    const targetsTypes = {
+        ALL: 'All',
+        ACTIVE: 'Active',
+        COMPLETED: 'Completed'
+    };
 
 
     vm.shoulDo = function (item) {
@@ -94,5 +107,29 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
             startDate: (new Date()).toString(),
             status: 'active'
         });
+    }
+
+    function showAll() {
+        vm.targetsType = targetsTypes.ALL;
+    }
+
+    function showActiveTargets() {
+        vm.targetsType = targetsTypes.ACTIVE;
+    }
+
+    function showCompletedTargets() {
+        vm.targetsType = targetsTypes.COMPLETED;
+    }
+
+    function isTargetsTypeAll() {
+        return vm.targetsType === targetsTypes.ALL;
+    }
+
+    function isTargetsTypeActive() {
+        return vm.targetsType === targetsTypes.ACTIVE;
+    }
+
+    function isTargetsTypeCompleted() {
+        return vm.targetsType === targetsTypes.COMPLETED;
     }
 }
