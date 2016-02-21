@@ -33,7 +33,6 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
         isTargetsTypeAll: isTargetsTypeAll,
         isTargetsTypeActive: isTargetsTypeActive,
         isTargetsTypeCompleted: isTargetsTypeCompleted
-
     });
     const targetsTypes = {
         ALL: 'All',
@@ -109,7 +108,7 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
         });
     }
 
-    function showAll() {
+    function showAllTargets() {
         vm.targetsType = targetsTypes.ALL;
     }
 

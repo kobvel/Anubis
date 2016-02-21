@@ -61,18 +61,6 @@
 </header>
 <section class="main">
     <ul class="todo-list">
-        <li class="completed">
-            <div class="view">
-                <input class="toggle" type="checkbox" checked>
-                <label class="task-name">
-                    Make fist commit
-                </label>
-                <label class="task-options">
-                    goalValue | metric | progress | todayLeft | dueDate
-                </label>
-                <button class="delete"></button>
-            </div>
-        </li>
         <li ng-repeat="item in vm.targets | targetFilter:vm.targetMetric.metric:vm.targetsType track by $index"
            ng-class="vm.isTaksCompleted(item) ? 'completed' : ''">
             <div class="view">
@@ -105,7 +93,7 @@
     <ul class="filters">
         <li>
             <a href="#" ng-class="vm.isTargetsTypeAll() ? 'selected' : ''"
-               ng-click="vm.showActiveTargets()">
+               ng-click="vm.showAllTargets()">
                 All [12]
             </a>
         </li>
