@@ -14,12 +14,6 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
         isTaksCompleted: isTaksCompleted
     });
 
-    console.log($reactive);
-    $timeout(function () {
-        console.log($scope.targets)
-        console.log(vm);
-
-    }, 3000);
 
     vm.shoulDo = function (item) {
         var total = getTotal(item.progress);
