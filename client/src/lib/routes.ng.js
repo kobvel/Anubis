@@ -13,7 +13,7 @@ angular
         $stateProvider
             .state('targets', {
                 url: '/targets',
-                templateUrl: 'client/src/components/target/targetList/target-list.ng.html',
+                templateUrl: 'client/src/components/target/targets-block.ng.html',
                 controller: 'TargetController as vm'
             })
             .state('d3', {
