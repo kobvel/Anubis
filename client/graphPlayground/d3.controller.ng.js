@@ -27,7 +27,10 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             chart.xAxis
                 .axisLabel('Time')
                 .tickFormat(function(d) {
-                    return d3.time.format('%b %d')(new Date(d)); });
+                    
+                    // if(chart.xAxis.range()[1].getTime()-chart.xAxis.range()[1] > )
+                    return d3.time.format('%b %d %H:%M')(new Date(d));
+                });
             // .ticks(d3.time.days, 1)
             // .tickFormat(d3.format(',.2f'));
 
@@ -37,14 +40,14 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             });
 
             chart.yAxis
-                .axisLabel('Value')
+                .axisLabel('Progress, %')
                 .tickFormat(d3.format(',.2f'));
 
             d3.select('#chart1 svg')
                 .attr('perserveAspectRatio', 'xMinYMid')
                 .attr('width', width)
                 .attr('height', height)
-                .datum(sinAndCos());
+                .datum(prepareData());
 
             setChartViewBox();
             resizeChart();
@@ -85,21 +88,26 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             return chart;
         });
 
-        function sinAndCos() {
+        function prepareData() {
             var output = [];
             self.targets[0].targets.forEach(function(target) {
                 var data = [];
                 sum = 0;
                 target.progress.forEach(function(commit) {
-                    sum += commit.value;
-                    data.push({ x: commit.date.getTime(), y: sum });
+                    if (!!target.goalValue) {
+                        sum += commit.value / target.goalValue * 100;
+                        data.push({ x: commit.date.getTime(), y: sum });
+                    }
                 });
 
-                output.push({
-                    values: data,
-                    key: target.name,
-                    color: getRandomColor()
-                });
+                if (data.length > 0) {
+                    output.push({
+                        values: data,
+                        key: target.name,
+                        color: getRandomColor()
+                    });
+                }
+                
             });
 
             return output;
