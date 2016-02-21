@@ -90,12 +90,13 @@ function GraphController($scope, $meteor, $timeout, metricService) {
         });
 
         function prepareData() {
+
             var output = [];
             vm.targets[0].targets.forEach(function (target) {
                 var data = [];
                 sum = 0;
                 target.progress.forEach(function (commit) {
-                    if (!!target.goalValue) {
+                    if (!!target.goalValue && getFilter() === target.metric) {
                         sum += commit.value / target.goalValue * 100;
                         data.push({ x: commit.date.getTime(), y: sum });
                     }
@@ -122,7 +123,14 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             }
             return color;
         }
+
+        function getFilter() {
+            var e = document.querySelector(".metric-dropdown > select");
+            var strUser = e.options[e.selectedIndex].text;
+            e.addEventListener("change", InitChart);
+            return strUser;
+        }
     }
-    // InitChart();
+    
 
 }
