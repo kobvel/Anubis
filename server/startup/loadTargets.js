@@ -15,7 +15,9 @@ Meteor.startup(function () {
                  'author': 'Zaika',
                 'message': 'I Love Git'}
                 ];
-            Messages.insert(messageList);    
+      for (var i = 0; i < messageList.length; i++) {
+      Messages.insert(messageList[i]);
+     }   
     }
     if (Targets.find().count() === 0) {
         var targetList = [
