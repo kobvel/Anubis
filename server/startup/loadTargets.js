@@ -1,4 +1,22 @@
 Meteor.startup(function () {
+    if (Messages.find().count() === 0) {
+        var messageList = [
+            {
+                'author': 'Mikki',
+                'message': 'Hello Team'
+            },
+            {
+                'author': 'Max',
+                'message': 'I Love D3'
+            }, {
+                'author': 'Eugene',
+                'message': 'I Love HTML'
+            }, {
+                 'author': 'Zaika',
+                'message': 'I Love Git'}
+                ];
+            Messages.insert(messageList);    
+    }
     if (Targets.find().count() === 0) {
         var targetList = [
             {
