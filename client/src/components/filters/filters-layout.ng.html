@@ -5,6 +5,16 @@
     </div>
     <div class="col-md-12 date-filter">
         <i class="fa fa-calendar"></i>
-        Date
+        Today
+    </div>
+    <div class="col-md-12 metric-filter">
+        <div class="metric-dropdown">
+            <select class="form-control"
+               ng-model="vm.targetMetric"
+               ng-options="target.metric for target in vm.targets"
+               ng-change="vm.filterByMetric()">
+                <option value="">Select metric</option>
+            </select>
+        </div>
     </div>
 </div>

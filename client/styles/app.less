@@ -468,3 +468,46 @@ input[type="checkbox"]:focus {
 .date-filter {
 
 }
+
+.metric-filter {
+
+}
+
+.metric-dropdown {
+  width: 80%;
+}
+
+/*
+    Metrics dropdown
+*/
+.wrapper-metrics-dropdown {
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+  padding: 10px 15px;
+  background: #fff;
+  border-left: 5px solid grey;
+  cursor: pointer;
+  outline: none;
+}
+
+.wrapper-metrics-dropdown .dropdown {
+  position: absolute;
+  top: 100%;
+  left: -5px;
+  right: 0px;
+  background: white;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wrapper-metrics-dropdown.active .dropdown {
+  opacity: 1;
+  pointer-events: auto;
+}

@@ -1,4 +1,12 @@
-<div>
+<section class="col-md-3">
+    <div class="common-block">
+        <div class="input-block search-block">
+            <input type="text" placeholder="Search" autofocus>
+        </div>
+        <filters targets="vm.targets[0].targets" target-metric="targetMetric"></filters>
+    </div>
+</section>
+<section class="todoapp col-md-9">
     <header class="header">
         <div class="new-todo-field">
             <input class="new-todo" placeholder="Your next task" autofocus ng-focus="showTaskCreateOption = true">
@@ -30,5 +38,5 @@
             </div>
         </div>
     </header>
-    <target-list targets="vm.targets[0].targets"></target-list>
-</div>
+    <target-list targets="vm.targets[0].targets" target-metric="targetMetric"></target-list>
+</section>

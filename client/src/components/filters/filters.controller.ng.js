@@ -1,9 +1,9 @@
 angular
-    .module("anubis")
-    .controller("FiltersController", FiltersController);
+    .module('anubis')
+    .controller('FiltersController', FiltersController);
 
-FiltersController.$inject = ["$scope", "$meteor", "$rootScope", "toastr", "$timeout"];
+FiltersController.$inject = ['$scope'];
 
-function FiltersController($scope, $meteor, $rootScope, toastr, $timeout) {
-
+function FiltersController($scope) {
+    const vm = this;
 }
