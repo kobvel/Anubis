@@ -10,8 +10,22 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
     Object.assign(vm, {
         track: false,
         currentValue: '',
+        frequencies: [{
+            name: 'hour',
+            value: 60
+        }, {
+            name: 'day',
+            value: 1440
+        }, {
+            name: 'week',
+            value: 10080
+        }, {
+            name: 'month',
+            value: 302400
+        }],
 
-        isTaksCompleted: isTaksCompleted
+        isTaksCompleted: isTaksCompleted,
+        addTarget: addTarget
     });
 
     console.log($reactive);
@@ -39,6 +53,10 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
             value: Number(value)
         });
         vm.track = false;
+
+        if (vm.isTaksCompleted(vm.targets[index])) {
+            vm.targets[index].status = 'done';
+        }
     };
 
     vm.countTotalProgress = function (progress, goal) {
@@ -68,5 +86,19 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
 
     function isTaksCompleted(item) {
         return vm.countTotalProgress(item.progress, item.goalValue) >= 100;
+    }
+
+    function addTarget() {
+        vm.targets.push({
+            frequency: vm.frequency.value,
+            goalDate: vm.goalDate,
+            goalValue: vm.goalValue,
+            metric: vm.metric,
+            metricShort: vm.metric.charAt(0),
+            name: vm.taskName,
+            progress: [],
+            startDate: (new Date()).toString(),
+            status: 'active'
+        });
     }
 }

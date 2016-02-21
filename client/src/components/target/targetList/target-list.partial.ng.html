@@ -104,13 +104,13 @@
     <span class="todo-count"><strong ng-bind='vm.targets.length'></strong> item left</span>
     <ul class="filters">
         <li>
-            <a class="selected" href="#">All [12]</a>
+            <a class="selected" href="#" ng-click="vm.showAll()">All [12]</a>
         </li>
         <li>
-            <a href="#">Active [12]</a>
+            <a href="#" ng-click="vm.showActiveTargets()">Active [12]</a>
         </li>
         <li>
-            <a href="#">Completed [1]</a>
+            <a href="#" ng-click="vm.showCompletedTargets()">Completed [1]</a>
         </li>
     </ul>
     <button class="clear-completed">Clear completed</button>
