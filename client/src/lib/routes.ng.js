@@ -14,7 +14,7 @@ angular
             .state('targets', {
                 url: '/targets',
                 templateUrl: 'client/src/components/target/targetList/target-list.ng.html',
-                controller: 'TargetListController as vm'
+                controller: 'TargetController as vm'
             })
             .state('d3', {
                 url: '/d3',
