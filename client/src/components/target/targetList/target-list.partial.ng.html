@@ -12,7 +12,7 @@
                 <button class="delete"></button>
             </div>
         </li>
-        <li ng-repeat="item in vm.targets track by $index">
+        <li ng-repeat="item in vm.targets | targetFilter:vm.targetMetric.metric track by $index">
             <div class="view">
                 <input ng-hide="vm.track === $index" ng-click="vm.track = $index; vm.currentValue =''" class="toggle" type="checkbox">
                 <div ng-show="vm.track === $index">
