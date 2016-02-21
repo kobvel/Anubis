@@ -12,7 +12,9 @@ function ChatWidgetController($scope, $meteor, toastr, $element, $timeout, $inte
     vm.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
     vm.user = Meteor.userId();
-    vm.email = Meteor.user().emails[0].address;
+    if (Meteor.user()) {
+        vm.email = Meteor.user().emails[0].address;
+    }
     vm.chatIsDisabled = false;
     vm.currenMessage = '';
     vm.seconds = 5;
@@ -23,7 +25,11 @@ function ChatWidgetController($scope, $meteor, toastr, $element, $timeout, $inte
         if (event.which === 13) {
             vm.chatIsDisabled = true;
             vm.messages.push({ author: vm.email || 'Anonymus', message: vm.currenMessage });
-            console.log(vm.user);
+            for (var i = 0; i < vm.targets.length; i++) {
+                if (vm.targets[i].name === 'Feedback chat Activity') {
+                    vm.targets[i].progress.push({ 'date': new Date(), 'value': 1 });
+                }
+            }
             vm.currenMessage = '';
 
             promise = $interval(function () {
