@@ -31,7 +31,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             var fitScreen = false;
             var width = 500;
             var height = 300;
-            var zoom = 1;
+            var zoom = 1.5;
 
             chart.useInteractiveGuideline(true);
 
@@ -68,7 +68,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
                 .tickFormat(d3.format(',.2f'));
             console.warn(d3.select('#main-chart svg'));
             d3.select(svgParent + ' svg')
-                .attr('perserveAspectRatio', 'xMinYMid')
+                .attr('preserveAspectRatio', 'xMinYMid')
                 .attr('width', width)
                 .attr('height', height)
                 .datum(prepareData(svgParent));
