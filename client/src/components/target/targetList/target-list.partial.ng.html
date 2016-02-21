@@ -61,7 +61,7 @@
 </header>
 <section class="main">
     <ul class="todo-list">
-        <li ng-repeat="item in vm.targets | targetFilter:vm.metricService.target.metric:vm.targetsType track by $index"
+        <li ng-repeat="item in vm.targets | targetFilter:vm.metricService.target.metric:vm.targetsType | filter:vm.metricService.searchQuery track by $index"
            ng-class="vm.isTaksCompleted(item) ? 'completed' : ''">
             <div class="view">
                 <input class="toggle" type="checkbox"

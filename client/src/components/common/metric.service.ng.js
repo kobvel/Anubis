@@ -4,7 +4,9 @@ angular.module('anubis')
 function metricService() {
     return {
         getMetric: getMetric,
-        target: {}
+        // TODO: move to special services
+        target: {},
+        searchQuery: ''
     };
     function getMetric(minutes) {
         var metric = 'day';

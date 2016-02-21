@@ -2,7 +2,8 @@
     <aside class="sidebar">
         <div class="common-block">
              <div class="input-block search-block">
-                <input type="text" placeholder="Search" autofocus>
+                <input type="text" placeholder="Search" autofocus
+                   ng-model="vm.metricService.searchQuery">
             </div>
             <filters targets="vm.targets[0].targets" target-metric="targetMetric"></filters>
         </div>
