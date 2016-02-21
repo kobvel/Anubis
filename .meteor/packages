@@ -29,7 +29,6 @@ tmeasday:publish-counts
 check
 email
 angularui:angular-google-maps
-twbs:bootstrap
 angularui:angular-ui-bootstrap
 vishalm:angular-toastr
 dotansimha:accounts-ui-angular
@@ -38,3 +37,4 @@ d3js:d3
 nvd3:nvd3
 rajit:bootstrap3-datepicker
 flemay:less-autoprefixer
+simison:bootstrap3-less
