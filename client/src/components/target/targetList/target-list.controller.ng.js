@@ -23,6 +23,7 @@ function TargetListController($scope, $timeout, metricService, toastr) {
             name: 'month',
             value: 302400
         }],
+
         metricService: metricService,
         isTaksCompleted: isTaksCompleted,
         addTarget: addTarget

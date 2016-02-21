@@ -68,7 +68,8 @@
                 <input class="toggle checkbox" type="checkbox"
                    ng-hide="vm.track === $index"
                    ng-click="vm.track = $index; vm.currentValue =''"
-                   ng-checked="vm.isTaksCompleted(item)">
+                   ng-model="vm.taskCompleted[$index]"
+                   ng-change="vm.taskCompleted[$index] = vm.isTaksCompleted(item)">
                 <div class="toggle" ng-show="vm.track === $index">
                     <input type="text" placeholder="hello" ng-model="vm.currentValue">
                     <div ng-click="vm.trackTarget(vm.currentValue, $index)" class="btn btn-success">ok</div>
