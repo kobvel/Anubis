@@ -5,10 +5,11 @@ angular
 TargetListController.$inject = ["$scope", "$meteor", "toastr"];
 
 function TargetListController($scope, $meteor, toastr) {
-    var self = this;
+    var vm = this;
 
     toastr.success('Hello world!', 'Toastr fun!');
 
-    self.user = Meteor.userId();
-    self.targets = $meteor.collection(Targets).subscribe('targets');
+    vm.user = Meteor.userId();
+    vm.targets = $meteor.collection(Targets).subscribe('targets');
+
 }
