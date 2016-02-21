@@ -21,6 +21,19 @@ Meteor.startup(function () {
     }
     if (Targets.find().count() === 0) {
         var targetList = [
+             {
+                'name': 'Feedback chat Activity',
+                'goalValue': 1000,
+                'metric': 'messages',
+                'metricShort': 'm',
+                'startDate': new Date(),
+                'goalDate': new Date('2016-03-15'),
+                'frequency': 60 * 24,
+                'progress': [
+                    { 'date': new Date('2016-02-20T01:10:21Z'), 'value': 20 }
+                ],
+                'status': 'active'
+            },
             {
                 'name': 'Read JS books',
                 'goalValue': 1000,

@@ -8,7 +8,9 @@ function chatWidget() {
         scope: {},
         restrict: 'E',
         controller: 'ChatWidgetController',
-        bindToController: {},
+        bindToController: {
+            targets: '='
+        },
         controllerAs: 'vm'
     };
 }
