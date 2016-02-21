@@ -10,6 +10,7 @@ function TargetListController($scope, $timeout, metricService, toastr) {
     Object.assign(vm, {
         track: false,
         currentValue: '',
+        taskName: '',
         frequencies: [{
             name: 'hour',
             value: 60
@@ -23,10 +24,12 @@ function TargetListController($scope, $timeout, metricService, toastr) {
             name: 'month',
             value: 302400
         }],
+        numbersPattern: /^[1-9]\d*$/,
 
         metricService: metricService,
         isTaksCompleted: isTaksCompleted,
-        addTarget: addTarget
+        addTarget: addTarget,
+        isTargetNameFieldEmpty: isTargetNameFieldEmpty
     });
 
 
@@ -98,8 +101,18 @@ function TargetListController($scope, $timeout, metricService, toastr) {
                 status: 'active'
             });
             toastr.success('New target had been added', 'Anubis satisfied!');
+            clearTargetAdditingForm();
         } else {
             toastr.error('Please, fill in task name', 'Invalid name');
         }
+    }
+
+    function clearTargetAdditingForm() {
+        vm.showTaskCreateOption = false;
+        vm.taskName = '';
+    }
+
+    function isTargetNameFieldEmpty() {
+        return vm.taskName === '';
     }
 }

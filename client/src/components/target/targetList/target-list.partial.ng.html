@@ -1,62 +1,41 @@
 <header class="header">
     <div class="new-todo-field">
-        <div class="target-add-icon" ng-click="vm.addTarget()">
+        <div ng-class="vm.isTargetNameFieldEmpty() ? 'target-add-icon-unavailable' : 'target-add-icon'"
+           ng-click="vm.addTarget()">
             <i class="fa fa-plus fa-2x"></i>
         </div>
-        <input class="new-todo" placeholder="Your next task" autofocus
-               ng-focus="showTaskCreateOption = true"
+        <input class="new-todo" placeholder="Your next task" autofocus maxlength="100"
+               ng-focus="vm.showTaskCreateOption = true"
                ng-model="vm.taskName"
                required>
     </div>
     <div class="row"
-         ng-show="showTaskCreateOption">
+         ng-show="vm.showTaskCreateOption">
         <div class="col-md-3 goalValue-field">
-            <div class="input-block"
-                 ng-show="goalValueEditMode">
-                <input type="text" placeholder="goal value" autofocus ng-model="vm.goalValue">
+            <div class="input-block">
+                <input type="text" placeholder="goal value" autofocus maxlength="7"
+                 ng-model="vm.goalValue"
+                 ng-pattern="vm.numbersPattern">
             </div>
-            <label
-                    ng-click="goalValueEditMode = true"
-                    ng-show="!goalValueEditMode">
-                goal value
-            </label>
         </div>
         <div class="col-md-3 metric-field">
-            <div class="input-block"
-                 ng-show="metricEditMode">
-                <input type="text" placeholder="metric" autofocus ng-model="vm.metric">
+            <div class="input-block">
+                <input type="text" placeholder="metric" autofocus maxlength="50" ng-model="vm.metric">
             </div>
-            <label
-                    ng-click="metricEditMode = true"
-                    ng-show="!metricEditMode">
-                metric
-            </label>
         </div>
         <div class="col-md-3 frequency-field">
-            <div class="input-block"
-                 ng-show="frequencyEditMode">
+            <div class="input-block">
                 <select class="form-control"
                         ng-model="vm.frequency"
                         ng-options="frequency.name for frequency in vm.frequencies">
                     <option value="">Select frequency</option>
                 </select>
             </div>
-            <label
-                    ng-click="frequencyEditMode = true"
-                    ng-show="!frequencyEditMode">
-                frequency
-            </label>
         </div>
         <div class="col-md-3 due-date-field">
-            <div class="input-block"
-                 ng-show="dueDateEditMode">
+            <div class="input-block">
                 <date-picker-custom date="vm.goalDate"></date-picker-custom>
             </div>
-            <label
-                    ng-click="dueDateEditMode = true"
-                    ng-show="!dueDateEditMode">
-                due date
-            </label>
         </div>
     </div>
 </header>
@@ -71,7 +50,7 @@
                    ng-model="vm.taskCompleted[$index]"
                    ng-change="vm.taskCompleted[$index] = vm.isTaksCompleted(item)">
                 <div class="toggle" ng-show="vm.track === $index">
-                    <input type="text" placeholder="hello" ng-model="vm.currentValue">
+                    <input type="text" placeholder="hello" ng-model="vm.currentValue" ng-pattern="vm.numbersPattern">
                     <div ng-click="vm.trackTarget(vm.currentValue, $index)" class="btn btn-success">ok</div>
                 </div>
                 <div class="task-content">
