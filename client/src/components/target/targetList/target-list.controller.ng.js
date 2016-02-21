@@ -2,9 +2,9 @@ angular
     .module('anubis')
     .controller('TargetListController', TargetListController);
 
-TargetListController.$inject = ['$scope', '$timeout', 'metricService', '$reactive'];
+TargetListController.$inject = ['$scope', '$timeout', 'metricService', 'toastr'];
 
-function TargetListController($scope, $timeout, metricService, $reactive) {
+function TargetListController($scope, $timeout, metricService, toastr) {
     var vm = this;
 
     Object.assign(vm, {
@@ -59,6 +59,7 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
             value: Number(value)
         });
         vm.track = false;
+        toastr.success(getTotal(vm.targets[index].progress) + ' TODAY', 'You are coming closer to target!');
 
         if (vm.isTaksCompleted(vm.targets[index])) {
             vm.targets[index].status = 'done';
@@ -106,6 +107,7 @@ function TargetListController($scope, $timeout, metricService, $reactive) {
             startDate: (new Date()).toString(),
             status: 'active'
         });
+        toastr.success('New target had been added', 'Anubis satisfied!');
     }
 
     function showAllTargets() {
