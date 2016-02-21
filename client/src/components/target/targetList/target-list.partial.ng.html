@@ -78,8 +78,8 @@
                   <div class="task-name" ng-bind="item.name"></div>
 
                   <div class="task-options">
-                      <div class="task-options-item" ng-if="item.goalValue" ng-bind="vm.getTotal(item.progress) + '/'+item.goalValue"></div>
-                      <div class="task-options-item" ng-bind="item.metric"> </div>
+                      <div class="task-options-item" ng-if="item.goalValue" ng-bind="vm.getTotal(item.progress) + '/'+item.goalValue +' '+ item.metric"></div>
+                      <div class="task-options-item" ng-bind=""> </div>
                       <div class="task-options-item" ng-if="vm.countTotalProgress(item.progress,item.goalValue)" ng-bind="vm.countTotalProgress(item.progress,item.goalValue)  + '%'"></div>
                       <div class="task-options-item" ng-if="vm.shoulDo(item)" ng-bind="vm.shoulDo(item) + ' per ' + vm.getMetric(item.frequency)"></div>
                       <div class="task-options-item" ng-bind="vm.getTotal(item.progress, true) +' '+ item.metric +' today'"></div>
