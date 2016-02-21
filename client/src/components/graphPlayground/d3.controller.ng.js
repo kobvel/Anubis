@@ -9,18 +9,13 @@ function GraphController($scope, $meteor, $timeout, metricService) {
 
     vm.user = Meteor.userId();
     vm.targets = $meteor.collection(Targets).subscribe('targets');
-
+    
     $scope.$watch('vm.targets', function () {
-        var graph1 = '#hey';
-        var graph2 = '#hop';
-
-        InitChart(graph1);
-        InitChart(graph2);
-
+        InitChart();
     }, true);
 
 
-    function InitChart(selector) {
+    function InitChart() {
         nv.addGraph(function () {
             var chart = nv.models.lineChart();
             var fitScreen = false;
@@ -48,8 +43,8 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             chart.yAxis
                 .axisLabel('Progress, %')
                 .tickFormat(d3.format(',.2f'));
-            console.warn(d3.select(selector));
-            d3.select(selector)
+                console.warn(d3.select('#main-chart svg'));
+            d3.select('#main-chart svg')
                 .attr('perserveAspectRatio', 'xMinYMid')
                 .attr('width', width)
                 .attr('height', height)
@@ -68,7 +63,7 @@ function GraphController($scope, $meteor, $timeout, metricService) {
                     .width(w)
                     .height(h);
 
-                d3.select(selector)
+                d3.select('#main-chart svg')
                     .attr('viewBox', '0 0 ' + w + ' ' + h)
                     .transition().duration(500)
                     .call(chart);
@@ -137,6 +132,6 @@ function GraphController($scope, $meteor, $timeout, metricService) {
             return strUser;
         }
     }
-
+    
 
 }
