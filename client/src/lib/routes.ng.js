@@ -17,7 +17,7 @@ angular
             })
             .state('d3', {
                 url: '/d3',
-                templateUrl: 'client/graphPlayground/d3.html',
+                templateUrl: 'client/src/components/graphPlayground/d3-layout.html',
                 controller: 'GraphController as vm'
             })
 
