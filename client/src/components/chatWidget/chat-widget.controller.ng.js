@@ -17,10 +17,22 @@ function ChatWidgetController($scope, $meteor, toastr, $element, $timeout, $inte
     }
     vm.chatIsDisabled = false;
     vm.currenMessage = '';
+    vm.currentMail = '';
     vm.seconds = 5;
 
     vm.messages = $meteor.collection(Messages).subscribe('messages');
 
+    vm.sendFeedback = function () {
+        vm.messages.push({ author: vm.email || 'Anonymus', message: vm.currenMessage });
+        for (var i = 0; i < vm.targets.length; i++) {
+            if (vm.targets[i].name === 'Feedback chat Activity') {
+                vm.targets[i].progress.push({ 'date': new Date(), 'value': 1 });
+            }
+        }
+        vm.currenMessage = '';
+        toastr.success('Your opinion is very important for us', 'Thank you!');
+
+    }
     vm.run = function (event) {
         if (event.which === 13) {
             vm.chatIsDisabled = true;

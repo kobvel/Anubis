@@ -282,10 +282,30 @@ input[type="checkbox"]:focus {
   min-height: 250px;
   position: relative;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+
 }
 
+// TODO: Should be refactored
 .common-block-chat{
-  min-height: 510px;
+  min-height: 190px;
+  textarea {
+    resize: none;
+  }
+  .input-block {
+  input[type="text"],
+    .input {
+         font-size: 15px;
+        height: 21px;
+     }
+  }
+  .btn-info {
+    color: #ffffff;
+     background-color: #4FD0D0; 
+     border-color: #46b8da; 
+    }
+    .btn-info:active { 
+         background-color: #1abc9c;
+    }
 }
 
 .search-block {
