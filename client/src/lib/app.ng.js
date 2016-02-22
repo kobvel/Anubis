@@ -2,7 +2,9 @@ angular.module('anubis',
     ['angular-meteor',
         'ui.router',
         'ngAnimate',
-        'ui.bootstrap'
+        'toastr',
+        'ui.bootstrap',
+        'accounts.ui'
     ]);
 
 function onReady() {

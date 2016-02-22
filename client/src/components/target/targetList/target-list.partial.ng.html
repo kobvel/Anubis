@@ -1,0 +1,112 @@
+<header class="header">
+    <div class="new-todo-field">
+        <div class="col-md-11">
+            <input class="new-todo" placeholder="Your next task" autofocus maxlength="100"
+               ng-focus="vm.showTaskCreateOption = true"
+               ng-model="vm.taskName"
+               required>
+        </div>
+        <div class="col-md-1">
+            <div ng-class="vm.isTargetNameFieldEmpty() ? 'target-add-icon-unavailable' : 'target-add-icon'"
+               ng-click="vm.addTarget(goalForm.$valid)">
+                <i class="fa fa-plus fa-2x"></i>
+            </div>
+        </div>
+    </div>
+    <div class="row"
+         ng-show="vm.showTaskCreateOption">
+        <div class="col-md-3 goalValue-field">
+            <form name="goalForm" class="input-block">
+                <input type="text" placeholder="goal value" autofocus maxlength="7"
+                   ng-class="goalForm.$valid ? '' : 'field-error'"
+                   ng-model="vm.goalValue"
+                   ng-pattern="vm.numbersPattern">
+            </form>
+        </div>
+        <div class="col-md-3 metric-field">
+            <div class="input-block">
+                <input type="text" placeholder="metric" autofocus maxlength="50" ng-model="vm.metric">
+            </div>
+        </div>
+        <div class="col-md-3 frequency-field">
+            <div class="input-block">
+                <select class="form-control"
+                        ng-model="vm.frequency"
+                        ng-options="frequency.name for frequency in vm.frequencies">
+                    <option value="">Select frequency</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3 due-date-field">
+            <div class="input-block">
+                <date-picker-custom date="vm.goalDate"></date-picker-custom>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="main">
+    <ul class="todo-list">
+        <li ng-repeat="item in vm.targets | targetFilter:vm.metricService.target.metric:vm.targetsType | filter:vm.metricService.searchQuery track by $index"
+            ng-class="vm.isTaksCompleted(item) ? 'completed' : ''" class="todo-list-item">
+            <div class="view">
+                <label class="toggle task-check"
+                   ng-hide="vm.track === $index">
+                    <input class="task-check-input" type="checkbox"
+                       ng-click="vm.track = $index; vm.currentValue =''"
+                       ng-model="vm.taskCompleted[$index]"
+                       ng-change="vm.taskCompleted[$index] = vm.isTaksCompleted(item)">
+                    <span class="task-check-icon"></span>
+                </label>
+                <div class="toggle task-progress" ng-show="vm.track === $index">
+                    <form name="progressForm">
+                        <input class="task-progress-input form-control" type="text" placeholder="0"
+                           ng-class="progressForm.$valid ? '' : 'field-error'"
+                           ng-model="vm.currentValue"
+                           ng-pattern="vm.numbersPattern">
+                        <button class="btn btn-primary btn-sm btn-block"
+                           ng-click="vm.trackTarget(vm.currentValue, $index)"
+                           ng-disabled="!progressForm.$valid">
+                            OK
+                        </button>
+                    </form>
+                </div>
+                <div class="task-content">
+                  <div class="task-name" ng-bind="item.name"></div>
+
+                  <div class="task-options">
+                      <div class="task-options-item" ng-if="item.goalValue" ng-bind="vm.getTotal(item.progress) + '/'+item.goalValue +' '+ item.metric"></div>
+                      <div class="task-options-item" ng-bind=""> </div>
+                      <div class="task-options-item" ng-if="vm.countTotalProgress(item.progress,item.goalValue)" ng-bind="vm.countTotalProgress(item.progress,item.goalValue)  + '%'"></div>
+                      <div class="task-options-item" ng-if="vm.shoulDo(item)" ng-bind="vm.shoulDo(item) + ' per ' + vm.getMetric(item.frequency)"></div>
+                      <div class="task-options-item" ng-bind="vm.getTotal(item.progress, true) +' '+ item.metric +' today'"></div>
+                      <div class="task-options-item">{{item.goalDate | date}}</div>
+                  </div>
+                </div>
+                <button class="delete" ng-click="vm.deleteTarget()"></button>
+            </div>
+        </li>
+    </ul>
+</section>
+<footer class="footer">
+    <!--<span class="todo-count"><strong ng-bind='vm.targets.length'></strong> item left</span>
+    <ul class="filters">
+        <li>
+            <a href="#" ng-class="vm.isTargetsTypeAll() ? 'selected' : ''"
+               ng-click="vm.showAllTargets()">
+                All [12]
+            </a>
+        </li>
+        <li>
+            <a href="#" ng-class="vm.isTargetsTypeActive() ? 'selected' : ''"
+               ng-click="vm.showActiveTargets()">
+                Active [12]
+            </a>
+        </li>
+        <li>
+            <a href="#" ng-class="vm.isTargetsTypeCompleted() ? 'selected' : ''"
+               ng-click="vm.showCompletedTargets()">
+                Completed [1]
+            </a>
+        </li>
+    </ul>-->
+</footer>

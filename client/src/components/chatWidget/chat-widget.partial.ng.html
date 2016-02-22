@@ -1,0 +1,18 @@
+<div class="common-block-chat" ui-keypress="{13:'vm.myFunc($event)'}">
+    <div class="input-block search-block">
+
+        <div class="form-group">
+            <textarea class="form-control" ng-model="vm.currenMessage" placeholder="Leave your feedback for us!" rows="5" id="comment"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <input type="text" placeholder="{{vm.email ? vm.email : 'Your mail'}}" autofocus
+                ng-keypress="vm.run($event)" ng-model="vm.currentMail">
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-info btn-sm btn-block" ng-click="vm.sendFeedback()"> send </button>
+            </div>
+        </div>
+
+    </div>
+</div>

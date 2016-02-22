@@ -1,4 +1,15 @@
 <body>
-    <div>Hello world</div>
-    {{1+1}}
+    <div id="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-logo" ui-sref="app.targets">Anubis</div>
+            <div class="top-bar-menu">
+                <a href="/#/targets" class="top-bar-menu-item">Targets</a>
+                <a href="/#/d3" class="top-bar-menu-item">Graphs</a>
+            </div>
+            <div class="top-bar-authentication">
+                <login-buttons></login-buttons>
+            </div>
+        </div>
+    </div>
+    <ui-view></ui-view>
 </body>

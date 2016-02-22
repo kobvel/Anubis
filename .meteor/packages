@@ -14,16 +14,27 @@ tracker                 # Meteor's client-side reactive programming library
 standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 
-autopublish             # Publish all data to the clients (for prototyping)
-insecure                # Allow all DB writes from clients (for prototyping)
+
 angular
 angularui:angular-ui-router
+angular:angular-animate
+
 accounts-password
 accounts-ui
 urigo:angular-blaze-template
-twbs:bootstrap
-less
-angularui:angular-ui-bootstrap
+accounts-facebook
 accounts-google
-angular:angular-animate
+angularutils:pagination
+tmeasday:publish-counts
+check
+email
+angularui:angular-google-maps
+twbs:bootstrap
+angularui:angular-ui-bootstrap
+vishalm:angular-toastr
+dotansimha:accounts-ui-angular
 fortawesome:fontawesome
+d3js:d3
+nvd3:nvd3
+rajit:bootstrap3-datepicker
+flemay:less-autoprefixer

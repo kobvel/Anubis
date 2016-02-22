@@ -1,0 +1,16 @@
+<div class="app-main">
+    <aside class="sidebar">
+        <div class="common-block">
+             <div class="input-block search-block">
+                <input type="text" placeholder="Search" autofocus
+                   ng-model="vm.metricService.searchQuery">
+            </div>
+            <filters targets="vm.targets[0].targets" targets-type="vm.targetsType" target-metric="targetMetric"></filters>
+        </div>
+        <hr>
+        <chat-widget targets="vm.targets[0].targets"></chat-widget>
+    </aside>
+    <section class="todoapp">
+        <ui-view></ui-view>
+    </section>
+</div>
