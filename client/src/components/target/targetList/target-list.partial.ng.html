@@ -49,21 +49,24 @@
         <li ng-repeat="item in vm.targets | targetFilter:vm.metricService.target.metric:vm.targetsType | filter:vm.metricService.searchQuery track by $index"
             ng-class="vm.isTaksCompleted(item) ? 'completed' : ''" class="todo-list-item">
             <div class="view">
-                <input class="toggle checkbox" type="checkbox"
-                   ng-hide="vm.track === $index"
-                   ng-click="vm.track = $index; vm.currentValue =''"
-                   ng-model="vm.taskCompleted[$index]"
-                   ng-change="vm.taskCompleted[$index] = vm.isTaksCompleted(item)">
-                <div class="toggle" ng-show="vm.track === $index">
+                <label class="toggle task-check"
+                   ng-hide="vm.track === $index">
+                    <input class="task-check-input" type="checkbox"
+                       ng-click="vm.track = $index; vm.currentValue =''"
+                       ng-model="vm.taskCompleted[$index]"
+                       ng-change="vm.taskCompleted[$index] = vm.isTaksCompleted(item)">
+                    <span class="task-check-icon"></span>
+                </label>
+                <div class="toggle task-progress" ng-show="vm.track === $index">
                     <form name="progressForm">
-                        <input type="text" placeholder="0"
+                        <input class="task-progress-input form-control" type="text" placeholder="0"
                            ng-class="progressForm.$valid ? '' : 'field-error'"
                            ng-model="vm.currentValue"
                            ng-pattern="vm.numbersPattern">
-                        <button class="btn btn-success"
+                        <button class="btn btn-primary btn-sm btn-block"
                            ng-click="vm.trackTarget(vm.currentValue, $index)"
                            ng-disabled="!progressForm.$valid">
-                            ok
+                            OK
                         </button>
                     </form>
                 </div>
