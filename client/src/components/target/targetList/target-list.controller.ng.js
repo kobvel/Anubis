@@ -42,8 +42,9 @@ function TargetListController($scope, $timeout, metricService, toastr) {
         var firstDate = new Date();
         var secondDate = new Date(item.goalDate);
         var diffMinutes = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (onMinute))) + 1440;
-
-        return Math.round(rest / (diffMinutes / item.frequency));
+        
+        var result = Math.round(rest / (diffMinutes / item.frequency)); 
+        return result < 0 ? null: result;
     };
 
     vm.trackTarget = function (value, index) {
